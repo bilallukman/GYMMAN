@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GYMMAN — Library</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body data-page="library">
+
+<aside id="appSidebar"></aside>
+
+<div class="app-main">
+
+    <main class="page-wrap">
+
+        <!-- PAGE HEADER -->
+        <header class="page-topbar">
+
+            <div>
+
+                <span class="eyebrow">YOUR LIBRARY</span>
+
+                <h1 class="page-title">
+                    Your training, your way.
+                </h1>
+
+                <p class="page-subtitle">
+                    Save your favorites, build custom programs and keep your training history organized.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- FAVORITES + CREATE PROGRAM -->
+        <section class="library-top-grid">
+
+            <!-- FAVORITES -->
+            <article class="card card-pad library-feature-card">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <span class="eyebrow">QUICK ACCESS</span>
+
+                        <h2>
+                            ⭐ Favorites
+                        </h2>
+
+                        <p>
+                            Your favorite exercises and programs in one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="favorites-list"
+                    id="favoritesList"
+                >
+
+                    <div class="empty-state">
+
+                        <h3>No favorites yet</h3>
+
+                        <p>
+                            Favorite exercises and programs to access them quickly.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- CREATE PROGRAM -->
+            <article class="card card-pad create-program-card">
+
+                <span class="eyebrow">
+                    CUSTOM TRAINING
+                </span>
+
+                <h2>
+                    Create your own program.
+                </h2>
+
+                <p>
+                    Build your own training split, add exercises and create a routine that fits your goals.
+                </p>
+
+
+                <button
+                    class="btn btn-primary"
+                    id="createProgramBtn"
+                    type="button"
+                >
+                    + Create New Program
+                </button>
+
+            </article>
+
+        </section>
+
+
+    
+        
+
+
+            <div
+                class="program-grid"
+                id="programList"
+            >
+
+                <div class="empty-state">
+
+                    <h3>No programs created</h3>
+
+                    <p>
+                        Create your first custom training program to get started.
+                    </p>
+
+                    <button
+                        class="btn btn-primary"
+                        id="emptyCreateProgramBtn"
+                        type="button"
+                    >
+                        Create a program
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT WORKOUTS + DIET -->
+        <section class="home-grid library-records">
+
+            <!-- RECENT WORKOUTS -->
+            <article class="card card-pad">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h2>
+                            Recent workouts
+                        </h2>
+
+                        <p>
+                            Your saved training records
+                        </p>
+
+                    </div>
+
+                    <a
+                        class="section-link"
+                        href="workout.html"
+                    >
+                        Add workout
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="workout-list"
+                    id="libraryWorkouts"
+                ></div>
+
+            </article>
+
+
+            <!-- DIET PLAN -->
+            <article class="card card-pad">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h2>
+                            Diet plan
+                        </h2>
+
+                        <p>
+                            Your latest nutrition plan
+                        </p>
+
+                    </div>
+
+                    <a
+                        class="section-link"
+                        href="diet.html"
+                    >
+                        Edit
+                    </a>
+
+                </div>
+
+
+                <div
+                    id="libraryDiet"
+                ></div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- APP SCRIPTS -->
+<script src="../js/app-shell.js"></script>
+<script src="../js/library.js"></script>
+
+</body>
+
+</html>

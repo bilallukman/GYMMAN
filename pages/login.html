@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>GYMMAN — Login</title>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="../css/login.css"
+>
+
+</head>
+
+
+<body>
+
+<a
+    href="../index.html"
+    class="back-link"
+>
+    ← Back to GYMMAN
+</a>
+
+
+<main class="auth-layout">
+
+
+    <!-- ======================================
+         BRAND SECTION
+    ======================================= -->
+
+    <section class="auth-brand">
+
+        <a href="../index.html">
+            GYMMAN
+        </a>
+
+        <span>
+            TRAIN SMARTER. GET STRONGER.
+        </span>
+
+        <h1>
+            Your training life, organized.
+        </h1>
+
+        <p>
+            Log workouts, track progress and keep
+            your fitness data together in one focused space.
+        </p>
+
+    </section>
+
+
+
+    <!-- ======================================
+         LOGIN CARD
+    ======================================= -->
+
+    <section class="auth-card">
+
+        <span class="auth-eyebrow">
+            WELCOME BACK
+        </span>
+
+
+        <h2>
+            Sign in to GYMMAN
+        </h2>
+
+
+        <p class="auth-muted">
+            Continue where you left off.
+        </p>
+
+
+
+        <!-- LOGIN FORM -->
+
+        <form
+            id="loginForm"
+            class="auth-form"
+        >
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username or email"
+                autocomplete="username"
+                required
+            >
+
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+
+            <button
+                id="loginBtn"
+                type="submit"
+            >
+                Log in
+            </button>
+
+
+            <p
+                id="error"
+                class="error"
+            ></p>
+
+        </form>
+
+
+
+        <!-- ======================================
+             EMAIL VERIFICATION
+        ======================================= -->
+
+        <div
+            id="verificationBox"
+            style="display:none;"
+        >
+
+            <p
+                id="verificationMessage"
+                class="auth-muted"
+            >
+                Please verify your email before logging in.
+            </p>
+
+
+            <button
+                type="button"
+                id="resendVerificationBtn"
+            >
+                Resend verification email
+            </button>
+
+        </div>
+
+
+
+        <!-- FORGOT PASSWORD -->
+
+        <p class="auth-footer">
+
+            <a href="forgot-password.html">
+                Forgot your password?
+            </a>
+
+        </p>
+
+
+
+        <!-- REGISTER -->
+
+        <p class="auth-footer">
+
+            Don't have an account?
+
+            <a href="register.html">
+                Create one
+            </a>
+
+        </p>
+
+    </section>
+
+</main>
+
+
+<script src="../js/login.js"></script>
+
+</body>
+
+</html>

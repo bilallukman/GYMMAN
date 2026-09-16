@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GYMMAN — Progress</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="../css/app.css">
+
+</head>
+
+
+<body data-page="progress">
+
+<aside id="appSidebar"></aside>
+
+
+<div class="app-main">
+
+    <main class="page-wrap">
+
+
+        <!-- =========================================
+             PAGE HEADER
+        ========================================== -->
+
+        <header class="page-topbar">
+
+            <div>
+
+                <span class="eyebrow">
+                    PROGRESS
+                </span>
+
+                <h1 class="page-title">
+                    See the work adding up.
+                </h1>
+
+                <p class="page-subtitle">
+                    Track your training consistency, strength and performance over time.
+                </p>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================================
+             MAIN STATS
+        ========================================== -->
+
+        <section class="stats-grid">
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">W</div>
+
+                <span class="stat-label">
+                    WORKOUTS
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="pWorkouts"
+                >
+                    0
+                </strong>
+
+                <span class="stat-meta">
+                    Total logged
+                </span>
+
+            </article>
+
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">S</div>
+
+                <span class="stat-label">
+                    STREAK
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="pStreak"
+                >
+                    0
+                </strong>
+
+                <span class="stat-meta">
+                    Consecutive days
+                </span>
+
+            </article>
+
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">K</div>
+
+                <span class="stat-label">
+                    CALORIES
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="pCalories"
+                >
+                    0
+                </strong>
+
+                <span class="stat-meta">
+                    Total recorded
+                </span>
+
+            </article>
+
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">B</div>
+
+                <span class="stat-label">
+                    BMI
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="pBmi"
+                >
+                    --
+                </strong>
+
+                <span class="stat-meta">
+                    Latest reading
+                </span>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =========================================
+             TRAINING STATS
+        ========================================== -->
+
+        <section class="stats-grid progress-extra-stats">
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">T</div>
+
+                <span class="stat-label">
+                    TOTAL SETS
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="pSets"
+                >
+                    0
+                </strong>
+
+                <span class="stat-meta">
+                    Sets logged
+                </span>
+
+            </article>
+
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">R</div>
+
+                <span class="stat-label">
+                    TOTAL REPS
+                </span>
+
+                <strong
+                    class="stat-value"
+                    id="pReps"
+                >
+                    0
+                </strong>
+
+                <span class="stat-meta">
+                    Repetitions
+                </span>
+
+            </article>
+
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">M</div>
+
+                <span class="stat-label">
+                    TOP MUSCLE
+                </span>
+
+                <strong
+                    class="stat-value progress-small-value"
+                    id="pTopMuscle"
+                >
+                    --
+                </strong>
+
+                <span class="stat-meta">
+                    Most trained
+                </span>
+
+            </article>
+
+
+
+            <article class="card stat-card">
+
+                <div class="stat-icon">V</div>
+
+                <span class="stat-label">
+                    TOTAL VOLUME
+                </span>
+
+                <strong
+                    class="stat-value progress-small-value"
+                    id="pVolumeTotal"
+                >
+                    0
+                </strong>
+
+                <span class="stat-meta">
+                    kg lifted
+                </span>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =========================================
+             MUSCLE + WEEKLY ACTIVITY
+        ========================================== -->
+
+        <section class="home-grid">
+
+
+            <!-- MUSCLE DISTRIBUTION -->
+
+            <article class="card card-pad">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h2>
+                            Muscle distribution
+                        </h2>
+
+                        <p>
+                            Total sets logged by muscle group
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="progress-list"
+                    id="pMuscles"
+                ></div>
+
+            </article>
+
+
+
+            <!-- LAST 7 DAYS -->
+
+            <article class="card card-pad">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h2>
+                            Last 7 days
+                        </h2>
+
+                        <p>
+                            Workout entries per day
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="week-chart"
+                    id="pWeek"
+                ></div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PERSONAL RECORDS
+        ========================================== -->
+
+        <section class="card card-pad progress-section">
+
+            <div class="section-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PERFORMANCE
+                    </span>
+
+                    <h2>
+                        Personal records
+                    </h2>
+
+                    <p>
+                        Your best recorded weight for each exercise.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="records-grid"
+                id="personalRecords"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             TRAINING VOLUME
+        ========================================== -->
+
+        <section class="card card-pad progress-section">
+
+            <div class="section-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        TRAINING LOAD
+                    </span>
+
+                    <h2>
+                        Training volume
+                    </h2>
+
+                    <p>
+                        Total weight moved based on your logged sets and reps.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="progress-list"
+                id="pVolume"
+            ></div>
+
+        </section>
+
+
+
+    </main>
+
+</div>
+
+
+<script src="../js/app-shell.js"></script>
+<script src="../js/progress.js"></script>
+
+</body>
+
+</html>

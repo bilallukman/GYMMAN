@@ -1,0 +1,3831 @@
+/* =========================================
+   GYMMAN APP — LOGGED-IN FITNESS PLATFORM
+   ========================================= */
+
+:root {
+    --blue: #2563eb;
+    --blue-dark: #1d4ed8;
+    --blue-soft: #eef5ff;
+    --blue-soft-2: #eff6ff;
+    --ink: #14213d;
+    --text: #344054;
+    --muted: #7b8798;
+    --line: #e5eaf1;
+    --surface: #ffffff;
+    --page: #f7f9fc;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --sidebar: 248px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    min-height: 100vh;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+
+.app-shell {
+    min-height: 100vh;
+}
+
+#appSidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--sidebar);
+    z-index: 1000;
+}
+
+.app-sidebar {
+    height: 100vh;
+    max-height: 100vh;
+    padding: 26px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.app-sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.app-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb {
+    background: #d8dee8;
+    border-radius: 10px;
+}
+
+.app-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #b9c2d0;
+}
+
+.app-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #d8dee8 transparent;
+}
+
+.app-logo {
+    padding: 0 16px 32px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.sidebar-section-label {
+    padding: 0 16px 10px;
+    color: #a0a8b5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.app-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.app-nav a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 13px;
+    border-radius: 11px;
+    color: #667085;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: .2s ease;
+}
+
+.app-nav a:hover { background: #f6f8fb; color: var(--ink); }
+.app-nav a.active { background: var(--blue-soft); color: var(--blue); font-weight: 600; }
+.app-nav svg { width: 18px; height: 18px; flex: 0 0 auto; stroke-width: 1.8; }
+
+.sidebar-divider { height: 1px; background: var(--line); margin: 22px 12px; }
+
+.sidebar-bottom { margin-top: auto; }
+
+.user-mini {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 12px;
+    border-radius: 13px;
+    background: #f8faff;
+    border: 1px solid #edf1f6;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.user-mini strong { display: block; max-width: 135px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ink); font-size: 11px; }
+.user-mini span { display: block; margin-top: 2px; color: #98a2b3; font-size: 9px; }
+
+.logout-link {
+    width: 100%;
+    margin-top: 9px;
+    padding: 9px 12px;
+    border: 0;
+    background: transparent;
+    color: #8b95a5;
+    text-align: left;
+    border-radius: 9px;
+    font-size: 11px;
+}
+.logout-link:hover { background: #fff1f2; color: var(--danger); }
+
+.app-main {
+    min-height: 100vh;
+    margin-left: var(--sidebar);
+}
+
+.mobile-topbar, .mobile-bottom-nav { display: none; }
+
+.page-wrap {
+    width: min(1220px, calc(100% - 72px));
+    margin: 0 auto;
+    padding: 48px 0 70px;
+}
+
+.page-topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 34px;
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--blue);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.page-title {
+    color: var(--ink);
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -2.2px;
+    font-weight: 700;
+}
+
+.page-subtitle { max-width: 650px; margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+.btn {
+    min-height: 43px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 17px;
+    border: 0;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    transition: .2s ease;
+}
+.btn-primary { background: var(--blue); color: white; box-shadow: 0 8px 20px rgba(37,99,235,.18); }
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+.btn-secondary { background: white; color: var(--text); border: 1px solid #dce3ec; }
+.btn-secondary:hover { border-color: #a9c1f4; color: var(--blue); transform: translateY(-1px); }
+.btn-danger { background: #fff5f5; color: var(--danger); border: 1px solid #fee2e2; }
+
+.card {
+    background: rgba(255,255,255,.94);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 8px 28px rgba(15,23,42,.045);
+}
+
+.card-pad { padding: 24px; }
+
+.section-head { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:18px; }
+.section-head h2 { color: var(--ink); font-size: 18px; letter-spacing: -.5px; }
+.section-head p { margin-top: 4px; color: var(--muted); font-size: 11px; }
+.section-link { color: var(--blue); text-decoration:none; font-size:11px; font-weight:600; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.stat-card { padding: 20px; }
+.stat-card .stat-label { color:#8b95a5; font-size:10px; }
+.stat-card .stat-value { margin: 7px 0 3px; color:var(--ink); font-size:27px; font-weight:700; letter-spacing:-1px; }
+.stat-card .stat-meta { color:#98a2b3; font-size:9px; }
+.stat-icon { width:34px; height:34px; display:grid; place-items:center; margin-bottom:14px; border-radius:10px; background:var(--blue-soft); color:var(--blue); }
+.stat-icon svg { width:17px; height:17px; }
+
+.home-grid { display:grid; grid-template-columns: 1.4fr .9fr; gap:16px; }
+.home-stack { display:flex; flex-direction:column; gap:16px; }
+
+.hero-card {
+    position:relative;
+    min-height: 280px;
+    padding: 30px;
+    overflow:hidden;
+    background: linear-gradient(135deg,#edf5ff 0%,#f9fbff 100%);
+    border:1px solid #dce8fa;
+    border-radius:20px;
+}
+.hero-card::after { content:""; position:absolute; width:260px; height:260px; right:-100px; top:-110px; border-radius:50%; background:rgba(37,99,235,.08); }
+.hero-card h2 { max-width:550px; margin:6px 0 11px; color:var(--ink); font-size:31px; line-height:1.1; letter-spacing:-1.4px; }
+.hero-card p { max-width:540px; color:#667085; font-size:12px; line-height:1.7; }
+.hero-actions { display:flex; gap:9px; margin-top:23px; }
+
+.training-card { position:relative; z-index:2; max-width: 470px; margin-top:24px; padding:15px; display:flex; align-items:center; justify-content:space-between; gap:12px; background:rgba(255,255,255,.85); border:1px solid #e0e8f4; border-radius:14px; }
+.training-card strong { display:block; color:var(--ink); font-size:12px; }
+.training-card span { display:block; margin-top:4px; color:#8b95a5; font-size:9px; }
+.training-badge { padding:7px 9px; border-radius:8px; background:var(--blue); color:white; font-size:9px; font-weight:600; }
+
+.activity-list { display:flex; flex-direction:column; }
+.activity-row { display:flex; align-items:center; gap:12px; padding:13px 0; border-bottom:1px solid #eef1f5; }
+.activity-row:last-child { border-bottom:0; }
+.activity-dot { width:34px; height:34px; display:grid; place-items:center; border-radius:10px; background:var(--blue-soft); color:var(--blue); font-size:10px; font-weight:700; }
+.activity-row strong { display:block; color:var(--text); font-size:11px; }
+.activity-row span { display:block; margin-top:3px; color:#98a2b3; font-size:9px; }
+.activity-row time { margin-left:auto; color:#a0a8b5; font-size:9px; }
+
+.week-chart { height:150px; display:flex; align-items:flex-end; gap:10px; padding-top:15px; }
+.week-day { flex:1; display:flex; flex-direction:column; align-items:center; gap:7px; height:100%; justify-content:flex-end; }
+.week-bar-wrap { width:100%; max-width:30px; height:100px; display:flex; align-items:flex-end; background:#f1f5f9; border-radius:8px; overflow:hidden; }
+.week-bar { width:100%; min-height:4px; background:#8db2f5; border-radius:8px; transition:.25s ease; }
+.week-day.today .week-bar { background:var(--blue); }
+.week-day span { color:#98a2b3; font-size:9px; }
+.week-day strong { color:var(--ink); font-size:9px; }
+
+.progress-list { display:flex; flex-direction:column; gap:15px; }
+.progress-row { display:grid; grid-template-columns:80px 1fr 38px; align-items:center; gap:10px; }
+.progress-row label { color:#667085; font-size:10px; }
+.progress-track { height:7px; background:#edf1f6; border-radius:20px; overflow:hidden; }
+.progress-fill { height:100%; background:var(--blue); border-radius:inherit; }
+.progress-row span { color:#8b95a5; font-size:9px; text-align:right; }
+
+.tool-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.tool-card-app { padding:19px; text-decoration:none; }
+.tool-card-app:hover { transform:translateY(-3px); border-color:#cddbf5; }
+.tool-card-app .tool-icon { width:39px; height:39px; display:grid; place-items:center; margin-bottom:20px; border-radius:11px; background:var(--blue-soft); color:var(--blue); }
+.tool-card-app h3 { margin-bottom:6px; color:var(--ink); font-size:13px; }
+.tool-card-app p { color:#8b95a5; font-size:10px; line-height:1.6; }
+
+.form-layout { display:grid; grid-template-columns: .85fr 1.15fr; gap:16px; align-items:start; }
+.form-card { padding:25px; }
+.form-group { margin-bottom:15px; }
+.form-group label { display:block; margin-bottom:7px; color:var(--text); font-size:10px; font-weight:600; }
+.form-input, .form-select { width:100%; height:44px; padding:0 13px; border:1px solid #dce3ec; border-radius:10px; outline:0; background:#fff; color:var(--ink); font-size:11px; transition:.2s ease; }
+.form-input:focus, .form-select:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(37,99,235,.08); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.form-card .btn { width:100%; margin-top:5px; }
+
+.workout-list { display:flex; flex-direction:column; gap:9px; }
+.workout-item { display:flex; align-items:center; gap:13px; padding:15px; border:1px solid #e8edf3; border-radius:13px; background:#fff; }
+.workout-item:hover { border-color:#cedcf3; box-shadow:0 8px 22px rgba(15,23,42,.04); }
+.workout-main { min-width:0; flex:1; }
+.workout-main strong { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink); font-size:12px; }
+.workout-main span { display:block; margin-top:4px; color:#8b95a5; font-size:9px; }
+.workout-meta { display:flex; gap:7px; }
+.meta-pill { padding:6px 8px; background:#f7f9fc; border-radius:7px; color:#667085; font-size:8px; }
+.icon-button { width:32px; height:32px; display:grid; place-items:center; border:1px solid #edf0f4; background:#fff; color:#8b95a5; border-radius:8px; }
+.icon-button:hover { background:#fff5f5; color:var(--danger); }
+
+.exercise-toolbar { display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap; }
+.search-box { position:relative; flex:1; min-width:230px; }
+.search-box svg { position:absolute; left:13px; top:50%; transform:translateY(-50%); width:16px; color:#98a2b3; }
+.search-box input { width:100%; height:44px; padding:0 14px 0 39px; border:1px solid #dce3ec; border-radius:10px; outline:0; background:#fff; font-size:11px; }
+.filter-row { display:flex; gap:6px; flex-wrap:wrap; }
+.filter-btn { height:40px; padding:0 12px; border:1px solid #dce3ec; border-radius:9px; background:#fff; color:#667085; font-size:10px; }
+.filter-btn.active, .filter-btn:hover { border-color:var(--blue); background:var(--blue-soft); color:var(--blue); }
+.exercise-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.exercise-card { padding:18px; }
+.exercise-visual { height:120px; display:grid; place-items:center; margin-bottom:15px; border-radius:13px; background:linear-gradient(145deg,#eef5ff,#f9fbff); color:var(--blue); }
+.exercise-visual strong { font-size:28px; font-weight:600; }
+.exercise-card h3 { margin-bottom:5px; color:var(--ink); font-size:13px; }
+.exercise-card p { min-height:32px; color:#8b95a5; font-size:9px; line-height:1.6; }
+.exercise-tags { display:flex; gap:5px; margin:12px 0; }
+.tag { padding:5px 7px; border-radius:6px; background:#f5f7fa; color:#7b8798; font-size:8px; }
+
+.explore-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.plan-card { padding:21px; position:relative; overflow:hidden; }
+.plan-card.featured { background:linear-gradient(145deg,#eef5ff,#fff); border-color:#d7e5fa; }
+.plan-card .plan-label { color:var(--blue); font-size:9px; font-weight:700; letter-spacing:1.2px; }
+.plan-card h3 { margin:9px 0 7px; color:var(--ink); font-size:17px; }
+.plan-card p { min-height:45px; color:#7b8798; font-size:10px; line-height:1.65; }
+.plan-meta { display:flex; gap:7px; margin:16px 0; }
+.plan-meta span { padding:6px 8px; background:#f6f8fb; border-radius:7px; color:#667085; font-size:8px; }
+
+.profile-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:16px; }
+.profile-card { padding:28px; }
+.profile-hero { text-align:center; }
+.profile-avatar { width:82px; height:82px; display:grid; place-items:center; margin:0 auto 15px; border-radius:50%; background:var(--blue); color:#fff; font-size:28px; font-weight:700; box-shadow:0 12px 30px rgba(37,99,235,.18); }
+.profile-hero h2 { color:var(--ink); font-size:20px; }
+.profile-hero p { margin-top:5px; color:#8b95a5; font-size:10px; }
+.profile-stats { display:grid; grid-template-columns:repeat(3,1fr); margin-top:25px; border-top:1px solid #edf0f4; border-bottom:1px solid #edf0f4; }
+.profile-stat { padding:14px 6px; text-align:center; border-right:1px solid #edf0f4; }
+.profile-stat:last-child { border-right:0; }
+.profile-stat strong { display:block; color:var(--ink); font-size:18px; }
+.profile-stat span { color:#98a2b3; font-size:8px; }
+.detail-list { display:flex; flex-direction:column; }
+.detail-row { display:flex; justify-content:space-between; gap:20px; padding:14px 0; border-bottom:1px solid #edf0f4; }
+.detail-row:last-child { border-bottom:0; }
+.detail-row span { color:#8b95a5; font-size:10px; }
+.detail-row strong { color:var(--text); font-size:10px; text-align:right; }
+
+.notification-list { display:flex; flex-direction:column; gap:9px; }
+.notification { display:flex; gap:13px; align-items:flex-start; padding:17px; }
+.notification-icon { width:35px; height:35px; display:grid; place-items:center; flex:0 0 auto; border-radius:10px; background:var(--blue-soft); color:var(--blue); }
+.notification strong { display:block; color:var(--ink); font-size:11px; }
+.notification p { margin-top:4px; color:#8b95a5; font-size:9px; line-height:1.5; }
+.notification time { margin-left:auto; color:#a0a8b5; font-size:8px; white-space:nowrap; }
+
+.empty-state { padding:45px 20px; text-align:center; border:1px dashed #dce3ec; border-radius:14px; background:#fbfcfe; }
+.empty-state h3 { margin-bottom:7px; color:var(--ink); font-size:14px; }
+.empty-state p { max-width:420px; margin:0 auto 16px; color:#8b95a5; font-size:10px; line-height:1.6; }
+
+.toast { position:fixed; right:25px; bottom:25px; z-index:3000; padding:12px 16px; border-radius:10px; background:#14213d; color:white; box-shadow:0 12px 30px rgba(15,23,42,.18); font-size:10px; opacity:0; transform:translateY(12px); pointer-events:none; transition:.25s ease; }
+.toast.show { opacity:1; transform:translateY(0); }
+
+@media (max-width: 1050px) {
+    :root { --sidebar: 220px; }
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+    .home-grid, .form-layout, .profile-grid { grid-template-columns:1fr; }
+    .exercise-grid, .explore-grid { grid-template-columns:repeat(2,1fr); }
+}
+
+@media (max-width: 760px) {
+    #appSidebar { display:none; }
+    .app-main { margin-left:0; padding-top:64px; padding-bottom:66px; }
+    .mobile-topbar { position:fixed; inset:0 0 auto 0; height:64px; z-index:1100; display:flex; align-items:center; justify-content:space-between; padding:0 18px; background:rgba(255,255,255,.94); border-bottom:1px solid var(--line); backdrop-filter:blur(18px); }
+    .mobile-topbar .logo { color:var(--ink); text-decoration:none; font-size:22px; font-weight:700; letter-spacing:1.5px; }
+    .mobile-user { width:34px; height:34px; display:grid; place-items:center; border-radius:50%; background:var(--blue); color:#fff; font-size:11px; font-weight:700; }
+    .mobile-bottom-nav { position:fixed; inset:auto 0 0 0; z-index:1100; height:62px; display:grid; grid-template-columns:repeat(5,1fr); background:rgba(255,255,255,.96); border-top:1px solid var(--line); backdrop-filter:blur(18px); }
+    .mobile-bottom-nav a { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; color:#98a2b3; text-decoration:none; font-size:7px; }
+    .mobile-bottom-nav a.active { color:var(--blue); }
+    .mobile-bottom-nav svg { width:17px; height:17px; }
+    .page-wrap { width:calc(100% - 34px); padding:30px 0 45px; }
+    .page-topbar { align-items:flex-start; flex-direction:column; margin-bottom:25px; }
+    .page-title { font-size:36px; letter-spacing:-1.6px; }
+    .page-subtitle { font-size:11px; }
+    .stats-grid { grid-template-columns:repeat(2,1fr); }
+    .tool-grid, .exercise-grid, .explore-grid { grid-template-columns:1fr; }
+    .hero-card { padding:24px; min-height:320px; }
+    .hero-card h2 { font-size:27px; }
+    .hero-actions { flex-direction:column; align-items:stretch; }
+    .training-card { align-items:flex-start; }
+    .week-chart { gap:6px; }
+    .card-pad, .form-card, .profile-card { padding:20px; }
+    .exercise-toolbar { display:block; }
+    .filter-row { margin-top:8px; overflow:auto; flex-wrap:nowrap; padding-bottom:3px; }
+    .filter-btn { white-space:nowrap; }
+}
+
+@media (max-width: 430px) {
+    .stats-grid { grid-template-columns:1fr 1fr; gap:8px; }
+    .stat-card { padding:15px; }
+    .stat-card .stat-value { font-size:22px; }
+    .form-row { grid-template-columns:1fr 1fr; }
+    .profile-stats { grid-template-columns:1fr; }
+    .profile-stat { border-right:0; border-bottom:1px solid #edf0f4; }
+    .profile-stat:last-child { border-bottom:0; }
+}
+
+
+/* =========================================
+   GYMMAN STAT CARD FIX
+========================================= */
+
+.stat-card {
+    display: flex !important;
+
+    align-items: flex-start !important;
+
+    gap: 16px !important;
+}
+
+.stat-card .stat-icon {
+    flex-shrink: 0 !important;
+}
+
+.stat-card .stat-info {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    flex: 1;
+}
+
+.stat-card .stat-label {
+    display: block;
+
+    color: #7a8698;
+
+    font-size: 11px;
+
+    line-height: 1.3;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.stat-card .stat-value {
+    display: block;
+
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 30px;
+
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.stat-card .stat-meta {
+    display: block;
+
+    color: #98a2b3;
+
+    font-size: 11px;
+
+    line-height: 1.3;
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   MOBILE STAT CARDS
+========================================= */
+
+@media (max-width: 700px) {
+
+    .stat-card {
+        gap: 11px !important;
+
+        padding: 18px !important;
+    }
+
+    .stat-card .stat-icon {
+        width: 38px;
+
+        height: 38px;
+    }
+
+    .stat-card .stat-value {
+        font-size: 24px;
+    }
+
+    .stat-card .stat-label {
+        font-size: 9px;
+    }
+
+    .stat-card .stat-meta {
+        font-size: 9px;
+    }
+
+}
+
+/* =========================================
+   SELECTED WORKOUT PLAN
+   ========================================= */
+
+.plan-preview {
+    padding: 28px;
+}
+
+.plan-preview .section-head {
+    margin-bottom: 22px;
+}
+
+.plan-preview .section-head h2 {
+    margin-top: 6px;
+    font-size: 24px;
+    color: #14213d;
+}
+
+.plan-preview .section-head p {
+    margin-top: 6px;
+    color: #667085;
+    font-size: 13px;
+}
+
+
+/* Exercise list */
+
+.plan-exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Individual exercise */
+
+.plan-exercise-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 15px 18px;
+
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    transition: all .2s ease;
+}
+
+.plan-exercise-item:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+}
+
+
+/* Exercise name + muscle */
+
+.plan-exercise-item > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.plan-exercise-item strong {
+    color: #14213d;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.plan-exercise-item span {
+    padding: 5px 9px;
+
+    background: #eef4ff;
+    color: #2563eb;
+
+    border-radius: 6px;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* Use exercise button */
+
+.plan-use-btn {
+    flex-shrink: 0;
+    min-width: 110px;
+    height: 38px;
+
+    padding: 0 14px;
+
+    font-size: 11px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .plan-preview {
+        padding: 20px;
+    }
+
+    .plan-exercise-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .plan-exercise-item > div {
+        flex-wrap: wrap;
+    }
+
+    .plan-use-btn {
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   LIBRARY CUSTOM TRAINING
+========================================= */
+
+.create-program-card {
+    padding: 32px;
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.create-program-card .eyebrow {
+    margin-bottom: 10px;
+}
+
+.create-program-card h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    line-height: 1.2;
+}
+
+.create-program-card p {
+    margin: 0;
+    max-width: 720px;
+    line-height: 1.6;
+}
+
+.create-program-card .btn {
+    align-self: flex-start;
+    margin-top: 22px;
+}
+
+
+/* MY PROGRAMS */
+
+.library-section {
+    margin-top: 34px;
+}
+
+.library-section .section-head {
+    margin-bottom: 18px;
+}
+
+.library-section .section-head h2 {
+    margin-top: 4px;
+}
+
+.library-section .section-head p {
+    margin-top: 5px;
+}
+
+
+/* PROGRAM EMPTY STATE */
+
+.library-section .empty-state {
+    min-height: 180px;
+    padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.library-section .empty-state h3 {
+    margin-bottom: 8px;
+}
+
+.library-section .empty-state p {
+    margin-bottom: 18px;
+}
+
+
+/* PROGRAM CARDS */
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.program-card {
+    padding: 24px;
+}
+
+.program-card h3 {
+    margin: 8px 0 6px;
+    font-size: 21px;
+}
+
+.program-card p {
+    margin: 0;
+    color: #7b8798;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .create-program-card {
+        padding: 26px;
+    }
+
+    .create-program-card h2 {
+        font-size: 24px;
+    }
+
+}
+
+/* =========================================
+   GYMMAN LIBRARY — CUSTOM TRAINING POLISH
+   ========================================= */
+
+/* Keep the custom-training block spacious */
+.create-program-card {
+    padding: 34px 32px;
+    min-height: 190px;
+}
+
+.create-program-card h2 {
+    margin: 0 0 9px;
+    color: var(--ink);
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+}
+
+.create-program-card p {
+    margin: 0;
+    max-width: 760px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.create-program-card .btn {
+    align-self: flex-start;
+    margin-top: 22px;
+}
+
+
+/* MY PROGRAMS — align everything cleanly */
+.library-section {
+    margin-top: 42px;
+}
+
+.library-section .section-head {
+    display: block;
+    margin: 0 0 22px;
+    padding: 0 2px;
+}
+
+.library-section .section-head .eyebrow {
+    display: block;
+    margin: 0 0 8px;
+}
+
+.library-section .section-head h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: -0.7px;
+}
+
+.library-section .section-head p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* Program cards */
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.program-card {
+    min-height: 190px;
+    padding: 25px;
+}
+
+.program-card h3 {
+    margin: 8px 0 7px;
+    color: var(--ink);
+    font-size: 21px;
+    line-height: 1.25;
+    letter-spacing: -0.4px;
+}
+
+.program-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* Empty "No programs created" box */
+.library-section .empty-state {
+    min-height: 210px;
+    padding: 44px 24px;
+}
+
+
+/* Add breathing room before Recent Workouts + Diet */
+.library-records {
+    margin-top: 28px;
+}
+
+
+/* Mobile */
+@media (max-width: 800px) {
+
+    .library-section {
+        margin-top: 32px;
+    }
+
+    .library-section .section-head {
+        margin-bottom: 18px;
+    }
+
+    .library-section .section-head h2 {
+        font-size: 22px;
+    }
+
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .create-program-card {
+        padding: 26px;
+    }
+
+    .create-program-card h2 {
+        font-size: 24px;
+    }
+
+    .library-records {
+        margin-top: 22px;
+    }
+}
+
+
+/* =========================================
+   LIBRARY — CARD SPACING
+   ========================================= */
+
+/* Space between Favorites and Create Program */
+.library-top-grid {
+    display: grid;
+    gap: 20px;
+}
+
+/* Space between Create Program and My Programs */
+.library-section {
+    margin-top: 20px;
+}
+
+/* Space between My Programs and Recent Workouts / Diet */
+.library-records {
+    margin-top: 20px;
+}
+
+/* Extra breathing room for program area */
+.library-section .section-head {
+    margin-bottom: 20px;
+}
+
+/* Keep program cards clean and separated */
+.program-grid {
+    gap: 20px;
+}
+
+/* Empty "No programs created" card */
+.library-section .empty-state {
+    margin-top: 0;
+}
+
+/* Mobile spacing */
+@media (max-width: 800px) {
+
+    .library-top-grid {
+        gap: 16px;
+    }
+
+    .library-section {
+        margin-top: 18px;
+    }
+
+    .library-records {
+        margin-top: 18px;
+    }
+
+    .program-grid {
+        gap: 16px;
+    }
+}
+
+/* =========================================
+   WORKOUT WEIGHT INPUT
+========================================= */
+
+.weight-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.weight-input-wrapper .form-input {
+    padding-right: 55px;
+}
+
+.weight-input-wrapper span {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+/* =========================================
+   PROGRESS PAGE UPGRADE
+========================================= */
+
+.progress-extra-stats {
+    margin-top: 20px;
+}
+
+.progress-small-value {
+    font-size: 22px;
+}
+
+.progress-section {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+
+/* PERSONAL RECORDS */
+
+.records-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.record-card {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.record-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 11px;
+    background: #eef5ff;
+    color: #2563eb;
+    display: grid;
+    place-items: center;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.record-content {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.record-content strong {
+    color: var(--ink);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.record-content span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.record-result {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.record-result strong {
+    color: var(--ink);
+    font-size: 14px;
+}
+
+.record-result span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .records-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .record-card {
+        padding: 15px;
+    }
+
+}
+
+/* =========================================
+   PROFILE DASHBOARD
+========================================= */
+
+.profile-overview {
+    margin-top: 20px;
+}
+
+.profile-small-value {
+    font-size: 21px;
+}
+
+.profile-section {
+    margin-top: 20px;
+}
+
+
+/* TRAINING ACTIVITY */
+
+.profile-chart {
+    min-height: 210px;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    padding: 20px 8px 4px;
+    overflow-x: auto;
+}
+
+.profile-chart-day {
+    min-width: 38px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.profile-chart-bar-wrap {
+    width: 100%;
+    height: 145px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.profile-chart-bar {
+    width: 22px;
+    min-height: 5px;
+    border-radius: 7px 7px 3px 3px;
+    background: #2563eb;
+}
+
+.profile-chart-day strong {
+    color: #14213d;
+    font-size: 10px;
+}
+
+.profile-chart-day span {
+    color: #8b95a5;
+    font-size: 9px;
+}
+
+
+/* WEIGHT HISTORY */
+
+.weight-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.weight-current,
+.weight-change {
+    padding: 18px;
+    border: 1px solid #e5eaf1;
+    border-radius: 14px;
+    background: #fff;
+}
+
+.weight-current span,
+.weight-change span {
+    display: block;
+    color: #8b95a5;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.weight-current strong,
+.weight-change strong {
+    display: block;
+    margin-top: 6px;
+    color: #14213d;
+    font-size: 22px;
+}
+
+.weight-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.weight-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 13px 15px;
+    border: 1px solid #edf0f4;
+    border-radius: 11px;
+}
+
+.weight-history-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.weight-history-row strong {
+    color: #14213d;
+    font-size: 12px;
+}
+
+.weight-history-row span {
+    color: #8b95a5;
+    font-size: 10px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .weight-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-chart {
+        gap: 8px;
+    }
+
+    .profile-chart-day {
+        min-width: 32px;
+    }
+
+}
+
+/* =========================================
+   GYMMAN — POLISHED PROFILE / ACCOUNT UI
+   ========================================= */
+
+.profile-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-top-actions .btn {
+    min-width: 108px;
+}
+
+.profile-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(37,99,235,.10), transparent 42%),
+        #fff;
+}
+
+.profile-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: var(--blue);
+}
+
+.profile-avatar {
+    box-shadow: 0 10px 24px rgba(37,99,235,.18);
+}
+
+.profile-hero h2 {
+    margin-top: 15px;
+    font-size: 22px;
+    letter-spacing: -.4px;
+}
+
+.profile-hero p {
+    font-size: 11px;
+}
+
+.profile-stats {
+    margin-top: 26px;
+}
+
+.profile-stat {
+    position: relative;
+    padding: 8px 12px;
+}
+
+.profile-stat + .profile-stat::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--line);
+}
+
+.profile-stat strong {
+    font-size: 20px;
+}
+
+.profile-stat span {
+    margin-top: 4px;
+}
+
+.detail-row {
+    min-height: 48px;
+    padding: 12px 0;
+}
+
+.detail-row strong {
+    max-width: 60%;
+    text-align: right;
+    word-break: break-word;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: #ecfdf3;
+    color: #15803d;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.profile-overview .stat-card {
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.profile-overview .stat-card:hover {
+    transform: translateY(-2px);
+    border-color: #dbe5f4;
+    box-shadow: 0 10px 26px rgba(20,33,61,.06);
+}
+
+.profile-section {
+    scroll-margin-top: 24px;
+}
+
+.profile-edit-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.profile-edit-panel[hidden] {
+    display: none;
+}
+
+.profile-edit-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, .42);
+    backdrop-filter: blur(5px);
+}
+
+.profile-edit-modal {
+    position: relative;
+    width: min(640px, 100%);
+    max-height: min(760px, calc(100vh - 48px));
+    overflow: auto;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 28px 80px rgba(15,23,42,.22);
+}
+
+.profile-edit-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+.profile-edit-header h2 {
+    margin-top: 4px;
+    color: var(--ink);
+    font-size: 22px;
+    letter-spacing: -.4px;
+}
+
+.profile-edit-header p {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.profile-modal-close {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+    color: #667085;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.profile-modal-close:hover {
+    background: #f8fafc;
+    color: var(--ink);
+}
+
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    padding-top: 22px;
+}
+
+.profile-edit-avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border: 1px solid #e8eef7;
+    border-radius: 14px;
+    background: #f8faff;
+}
+
+.profile-edit-avatar-row > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-edit-avatar-row strong {
+    color: var(--ink);
+    font-size: 13px;
+}
+
+.profile-edit-avatar-row span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.profile-avatar-large {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--blue);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.profile-edit-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.profile-edit-form label > span {
+    color: #475467;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.profile-edit-form label em {
+    color: #98a2b3;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.profile-edit-form input {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid #dfe5ee;
+    border-radius: 10px;
+    outline: none;
+    background: #fff;
+    color: var(--ink);
+    font-size: 12px;
+    transition: .2s ease;
+}
+
+.profile-edit-form input:focus {
+    border-color: #93b4f7;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.09);
+}
+
+.profile-security-box {
+    display: flex;
+    align-items: center;
+    padding: 13px 14px;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    background: #eff6ff;
+}
+
+.profile-security-box strong {
+    color: #1d4ed8;
+    font-size: 11px;
+}
+
+.profile-security-box p {
+    margin-top: 2px;
+    color: #64748b;
+    font-size: 10px;
+}
+
+.profile-form-message {
+    min-height: 18px;
+    color: var(--danger);
+    font-size: 11px;
+}
+
+.profile-form-message.success {
+    color: var(--success);
+}
+
+.profile-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 3px;
+}
+
+@media (max-width: 800px) {
+    .profile-top-actions {
+        width: 100%;
+    }
+
+    .profile-top-actions .btn {
+        flex: 1;
+    }
+
+    .profile-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-edit-modal {
+        padding: 21px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 520px) {
+    .profile-top-actions {
+        flex-direction: column;
+    }
+
+    .profile-top-actions .btn {
+        width: 100%;
+    }
+
+    .profile-edit-panel {
+        padding: 12px;
+    }
+
+    .profile-edit-modal {
+        max-height: calc(100vh - 24px);
+        padding: 18px;
+    }
+
+    .profile-edit-actions {
+        flex-direction: column-reverse;
+    }
+
+    .profile-edit-actions .btn {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   PROFILE USER MENU
+   ========================================= */
+
+.user-mini {
+    width: 100%;
+    border: 1px solid #edf1f6;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: .2s ease;
+    position: relative;
+}
+
+.user-mini:hover {
+    background: #f2f6fc;
+    border-color: #dfe7f2;
+}
+
+.user-mini.menu-open {
+    background: #eef5ff;
+    border-color: #dbe8ff;
+}
+
+.user-mini-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.user-mini-info strong {
+    display: block;
+    max-width: 135px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ink);
+    font-size: 11px;
+}
+
+.user-mini-info span {
+    display: block;
+    margin-top: 2px;
+    color: #98a2b3;
+    font-size: 9px;
+}
+
+.user-menu-chevron {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 auto;
+    color: #98a2b3;
+    transition: transform .2s ease;
+}
+
+.user-mini.menu-open .user-menu-chevron {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   DROPDOWN
+   ========================================= */
+
+.user-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% + 10px);
+
+    background: rgba(255, 255, 255, .98);
+    border: 1px solid #e5eaf1;
+    border-radius: 16px;
+
+    padding: 9px;
+
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, .12),
+        0 3px 10px rgba(15, 23, 42, .05);
+
+    backdrop-filter: blur(18px);
+
+    z-index: 2000;
+
+    animation: userMenuIn .18s ease;
+}
+
+.user-menu[hidden] {
+    display: none;
+}
+
+@keyframes userMenuIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(7px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================
+   MENU HEADER
+   ========================================= */
+
+.user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 10px 9px 12px;
+}
+
+.user-menu-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: var(--blue);
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.user-menu-header strong {
+    display: block;
+
+    max-width: 145px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--ink);
+    font-size: 11px;
+}
+
+.user-menu-header span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #98a2b3;
+    font-size: 9px;
+}
+
+
+/* =========================================
+   DIVIDER
+   ========================================= */
+
+.user-menu-divider {
+    height: 1px;
+
+    margin: 4px 4px;
+
+    background: #edf1f6;
+}
+
+
+/* =========================================
+   MENU ITEMS
+   ========================================= */
+
+.user-menu-item {
+    width: 100%;
+
+    min-height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 10px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #667085;
+
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background .18s ease,
+        color .18s ease;
+}
+
+.user-menu-item svg {
+    width: 16px;
+    height: 16px;
+
+    flex: 0 0 auto;
+
+    stroke-width: 1.8;
+}
+
+.user-menu-item:hover {
+    background: #f5f8fc;
+    color: var(--ink);
+}
+
+
+/* =========================================
+   LOGOUT
+   ========================================= */
+
+.user-menu-logout {
+    color: #dc2626;
+}
+
+.user-menu-logout:hover {
+    background: #fff1f2;
+    color: #dc2626;
+}
+
+
+/* =========================================
+   MOBILE USER BUTTON
+   ========================================= */
+
+.mobile-user {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: var(--blue);
+    color: white;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.mobile-user:hover {
+    transform: scale(1.04);
+}
+
+/* =========================================
+   FIX USER PROFILE POPUP
+========================================= */
+
+.sidebar-bottom {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.app-sidebar {
+    overflow-x: visible !important;
+}
+
+.user-menu {
+    position: absolute !important;
+
+    left: 0 !important;
+    right: 0 !important;
+
+    bottom: calc(100% + 10px) !important;
+
+    width: 100% !important;
+
+    z-index: 99999 !important;
+
+    display: block !important;
+}
+
+.user-menu[hidden] {
+    display: none !important;
+}
+
+.user-menu-header,
+.user-menu-item {
+    position: relative;
+    z-index: 100000;
+}
+
+/* =========================================================
+   GYMMAN — PREMIUM DARK THEME
+   ========================================================= */
+
+html[data-theme="dark"] {
+    --blue: #3b82f6;
+    --blue-dark: #2563eb;
+    --blue-soft: #172a4d;
+    --blue-soft-2: #142441;
+
+    --ink: #f5f7fb;
+    --text: #d5ddeb;
+    --muted: #91a0b8;
+
+    --line: #26344a;
+
+    --surface: #111a2a;
+    --page: #080e1a;
+
+    --success: #34d399;
+    --danger: #fb7185;
+
+    color-scheme: dark;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html[data-theme="dark"] body {
+    background:
+        radial-gradient(
+            circle at 85% 5%,
+            rgba(37, 99, 235, 0.07),
+            transparent 28%
+        ),
+        #080e1a !important;
+
+    color: #d5ddeb !important;
+}
+
+
+/* =========================================================
+   MAIN APPLICATION AREA
+   ========================================================= */
+
+html[data-theme="dark"] .app-main {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+html[data-theme="dark"] .app-sidebar {
+    background: rgba(13, 20, 34, 0.96) !important;
+
+    border-right: 1px solid #202d42 !important;
+
+    box-shadow:
+        12px 0 40px rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme="dark"] .app-logo {
+    color: #f5f7fb !important;
+}
+
+html[data-theme="dark"] .sidebar-section-label {
+    color: #66758d !important;
+}
+
+html[data-theme="dark"] .app-nav a {
+    color: #8d9bb0 !important;
+}
+
+html[data-theme="dark"] .app-nav a:hover {
+    background: #121e31 !important;
+    color: #eef3fb !important;
+}
+
+html[data-theme="dark"] .app-nav a.active {
+    background:
+        linear-gradient(
+            135deg,
+            #162c52,
+            #132746
+        ) !important;
+
+    color: #5d96ff !important;
+
+    box-shadow:
+        inset 3px 0 0 #3b82f6;
+}
+
+html[data-theme="dark"] .app-nav a.active svg {
+    color: #5d96ff !important;
+}
+
+html[data-theme="dark"] .sidebar-divider {
+    background: #202d42 !important;
+}
+
+
+/* =========================================================
+   SIDEBAR USER
+   ========================================================= */
+
+html[data-theme="dark"] .user-mini {
+    background: #111c2e !important;
+
+    border: 1px solid #24334a !important;
+
+    color: #e9eef7 !important;
+}
+
+html[data-theme="dark"] .user-mini:hover {
+    background: #162238 !important;
+    border-color: #30435f !important;
+}
+
+html[data-theme="dark"] .user-mini strong {
+    color: #f1f5fb !important;
+}
+
+html[data-theme="dark"] .user-mini span {
+    color: #718198 !important;
+}
+
+html[data-theme="dark"] .user-menu-chevron {
+    color: #718198 !important;
+}
+
+
+/* =========================================================
+   PROFILE POPUP
+   ========================================================= */
+
+html[data-theme="dark"] .user-menu {
+    background: #111a2a !important;
+
+    border: 1px solid #29384f !important;
+
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.42) !important;
+}
+
+html[data-theme="dark"] .user-menu-header {
+    color: #f5f7fb !important;
+}
+
+html[data-theme="dark"] .user-menu-header strong {
+    color: #f5f7fb !important;
+}
+
+html[data-theme="dark"] .user-menu-header span {
+    color: #8290a6 !important;
+}
+
+html[data-theme="dark"] .user-menu-divider {
+    background: #26344a !important;
+}
+
+html[data-theme="dark"] .user-menu-item {
+    color: #c8d2e2 !important;
+}
+
+html[data-theme="dark"] .user-menu-item:hover {
+    background: #172337 !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .user-menu-logout:hover {
+    background: rgba(239, 68, 68, 0.10) !important;
+    color: #fb7185 !important;
+}
+
+
+/* =========================================================
+   PAGE HEADINGS
+   ========================================================= */
+
+html[data-theme="dark"] .page-title {
+    color: #f7f9fd !important;
+}
+
+html[data-theme="dark"] .page-subtitle {
+    color: #91a0b8 !important;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 {
+    color: #f4f7fc;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .stat-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .exercise-card,
+html[data-theme="dark"] .plan-card,
+html[data-theme="dark"] .tool-card-app,
+html[data-theme="dark"] .form-card,
+html[data-theme="dark"] .notification,
+html[data-theme="dark"] .program-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 28, 44, 0.98),
+            rgba(15, 24, 39, 0.98)
+        ) !important;
+
+    border-color: #26354b !important;
+
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.13) !important;
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+html[data-theme="dark"] .tool-card-app:hover,
+html[data-theme="dark"] .exercise-card:hover,
+html[data-theme="dark"] .plan-card:hover,
+html[data-theme="dark"] .program-card:hover {
+    border-color: #365174 !important;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20) !important;
+}
+
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
+
+html[data-theme="dark"] .stat-card .stat-label {
+    color: #8190a6 !important;
+}
+
+html[data-theme="dark"] .stat-card .stat-value {
+    color: #f5f7fb !important;
+}
+
+html[data-theme="dark"] .stat-card .stat-meta {
+    color: #718097 !important;
+}
+
+html[data-theme="dark"] .stat-icon {
+    background: #172d52 !important;
+    color: #5c94ff !important;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+html[data-theme="dark"] .hero-card {
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(59, 130, 246, 0.16),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #101d32,
+            #0e1829
+        ) !important;
+
+    border-color: #263e60 !important;
+}
+
+html[data-theme="dark"] .hero-card h2 {
+    color: #f5f8fd !important;
+}
+
+html[data-theme="dark"] .hero-card p {
+    color: #91a0b8 !important;
+}
+
+html[data-theme="dark"] .hero-card::after {
+    background: rgba(59, 130, 246, 0.07) !important;
+}
+
+
+/* =========================================================
+   TRAINING CARD
+   ========================================================= */
+
+html[data-theme="dark"] .training-card {
+    background: rgba(17, 28, 46, 0.92) !important;
+
+    border-color: #2b3e59 !important;
+}
+
+html[data-theme="dark"] .training-card strong {
+    color: #f0f4fa !important;
+}
+
+html[data-theme="dark"] .training-card span {
+    color: #7f8da3 !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+html[data-theme="dark"] .btn-secondary {
+    background: #141f31 !important;
+
+    border-color: #30415a !important;
+
+    color: #dce5f1 !important;
+}
+
+html[data-theme="dark"] .btn-secondary:hover {
+    background: #19263a !important;
+
+    border-color: #4774ae !important;
+
+    color: #70a3ff !important;
+}
+
+html[data-theme="dark"] .btn-primary {
+    background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #2563eb
+        ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 10px 28px rgba(37, 99, 235, 0.25) !important;
+}
+
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+html[data-theme="dark"] .form-input,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .search-box input,
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+    background: #121d2e !important;
+
+    color: #f1f5fb !important;
+
+    border-color: #2b3c55 !important;
+}
+
+html[data-theme="dark"] .form-input::placeholder,
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: #627188 !important;
+}
+
+html[data-theme="dark"] .form-input:focus,
+html[data-theme="dark"] .form-select:focus,
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] select:focus,
+html[data-theme="dark"] textarea:focus {
+    border-color: #3b82f6 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.12) !important;
+}
+
+html[data-theme="dark"] .form-group label {
+    color: #cbd5e1 !important;
+}
+
+
+/* =========================================================
+   WORKOUT ITEMS
+   ========================================================= */
+
+html[data-theme="dark"] .workout-item {
+    background: #111c2c !important;
+
+    border-color: #26364d !important;
+}
+
+html[data-theme="dark"] .workout-item:hover {
+    background: #152238 !important;
+
+    border-color: #355174 !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18) !important;
+}
+
+html[data-theme="dark"] .workout-main strong {
+    color: #f1f5fb !important;
+}
+
+html[data-theme="dark"] .workout-main span {
+    color: #7f8da4 !important;
+}
+
+html[data-theme="dark"] .meta-pill {
+    background: #1a273b !important;
+
+    color: #9aa9bd !important;
+}
+
+html[data-theme="dark"] .icon-button {
+    background: #121d2d !important;
+
+    border-color: #2b3b52 !important;
+
+    color: #8b9ab0 !important;
+}
+
+
+/* =========================================================
+   ACTIVITY
+   ========================================================= */
+
+html[data-theme="dark"] .activity-row {
+    border-bottom-color: #243249 !important;
+}
+
+html[data-theme="dark"] .activity-row strong {
+    color: #dce5f1 !important;
+}
+
+html[data-theme="dark"] .activity-row span {
+    color: #7d8ca2 !important;
+}
+
+html[data-theme="dark"] .activity-row time {
+    color: #66758c !important;
+}
+
+html[data-theme="dark"] .activity-dot {
+    background: #172d52 !important;
+    color: #5d96ff !important;
+}
+
+
+/* =========================================================
+   WEEK CHART
+   ========================================================= */
+
+html[data-theme="dark"] .week-bar-wrap {
+    background: #1b2739 !important;
+}
+
+html[data-theme="dark"] .week-bar {
+    background: #527dbd !important;
+}
+
+html[data-theme="dark"] .week-day.today .week-bar {
+    background: #3b82f6 !important;
+}
+
+html[data-theme="dark"] .week-day span {
+    color: #73829a !important;
+}
+
+html[data-theme="dark"] .week-day strong {
+    color: #dce5f1 !important;
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+html[data-theme="dark"] .progress-track {
+    background: #1d2a3e !important;
+}
+
+html[data-theme="dark"] .progress-row label {
+    color: #8d9bb0 !important;
+}
+
+html[data-theme="dark"] .progress-row span {
+    color: #75849a !important;
+}
+
+
+/* =========================================================
+   EXERCISES
+   ========================================================= */
+
+html[data-theme="dark"] .exercise-visual {
+    background:
+        linear-gradient(
+            145deg,
+            #152744,
+            #111d31
+        ) !important;
+
+    color: #5e98ff !important;
+}
+
+html[data-theme="dark"] .exercise-card h3 {
+    color: #f2f6fb !important;
+}
+
+html[data-theme="dark"] .exercise-card p {
+    color: #8190a6 !important;
+}
+
+html[data-theme="dark"] .tag {
+    background: #1b283b !important;
+    color: #8c9bb0 !important;
+}
+
+
+/* =========================================================
+   SEARCH + FILTERS
+   ========================================================= */
+
+html[data-theme="dark"] .search-box input,
+html[data-theme="dark"] .filter-btn {
+    background: #121d2e !important;
+
+    border-color: #2b3b53 !important;
+
+    color: #cdd7e5 !important;
+}
+
+html[data-theme="dark"] .filter-btn:hover,
+html[data-theme="dark"] .filter-btn.active {
+    background: #172c4f !important;
+
+    border-color: #3b82f6 !important;
+
+    color: #65a0ff !important;
+}
+
+
+/* =========================================================
+   EXPLORE / PLANS
+   ========================================================= */
+
+html[data-theme="dark"] .plan-card.featured {
+    background:
+        linear-gradient(
+            145deg,
+            #152744,
+            #111d30
+        ) !important;
+
+    border-color: #2e4770 !important;
+}
+
+html[data-theme="dark"] .plan-card h3 {
+    color: #f2f6fb !important;
+}
+
+html[data-theme="dark"] .plan-card p {
+    color: #8190a6 !important;
+}
+
+html[data-theme="dark"] .plan-meta span {
+    background: #1b283b !important;
+
+    color: #91a0b5 !important;
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+html[data-theme="dark"] .profile-hero h2 {
+    color: #f4f7fc !important;
+}
+
+html[data-theme="dark"] .profile-hero p {
+    color: #8291a7 !important;
+}
+
+html[data-theme="dark"] .profile-stats {
+    border-color: #26354b !important;
+}
+
+html[data-theme="dark"] .profile-stat {
+    border-color: #26354b !important;
+}
+
+html[data-theme="dark"] .profile-stat strong {
+    color: #f2f6fb !important;
+}
+
+html[data-theme="dark"] .profile-stat span {
+    color: #74839a !important;
+}
+
+html[data-theme="dark"] .detail-row {
+    border-color: #26354b !important;
+}
+
+html[data-theme="dark"] .detail-row span {
+    color: #7e8da4 !important;
+}
+
+html[data-theme="dark"] .detail-row strong {
+    color: #d9e2ef !important;
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+   ========================================================= */
+
+html[data-theme="dark"] .notification {
+    background: #111b2b !important;
+}
+
+html[data-theme="dark"] .notification-icon {
+    background: #172d52 !important;
+    color: #5e98ff !important;
+}
+
+html[data-theme="dark"] .notification strong {
+    color: #edf3fa !important;
+}
+
+html[data-theme="dark"] .notification p {
+    color: #7e8da4 !important;
+}
+
+html[data-theme="dark"] .notification time {
+    color: #65758d !important;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+html[data-theme="dark"] .empty-state {
+    background: #0f1928 !important;
+
+    border-color: #2b3b52 !important;
+}
+
+html[data-theme="dark"] .empty-state h3 {
+    color: #edf2f9 !important;
+}
+
+html[data-theme="dark"] .empty-state p {
+    color: #7f8da4 !important;
+}
+
+
+/* =========================================================
+   LIBRARY
+   ========================================================= */
+
+html[data-theme="dark"] .create-program-card {
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(59, 130, 246, 0.09),
+            transparent 30%
+        ),
+        #111b2b !important;
+
+    border-color: #293b54 !important;
+}
+
+html[data-theme="dark"] .create-program-card h2 {
+    color: #f4f7fc !important;
+}
+
+html[data-theme="dark"] .create-program-card p {
+    color: #8594aa !important;
+}
+
+html[data-theme="dark"] .library-section .section-head h2 {
+    color: #f2f6fb !important;
+}
+
+html[data-theme="dark"] .library-section .section-head p {
+    color: #7f8da4 !important;
+}
+
+html[data-theme="dark"] .program-card h3 {
+    color: #f0f4fa !important;
+}
+
+html[data-theme="dark"] .program-card p {
+    color: #8190a6 !important;
+}
+
+
+/* =========================================================
+   PLAN EXERCISE ITEMS
+   ========================================================= */
+
+html[data-theme="dark"] .plan-preview {
+    background: transparent !important;
+}
+
+html[data-theme="dark"] .plan-preview .section-head h2 {
+    color: #f1f5fb !important;
+}
+
+html[data-theme="dark"] .plan-preview .section-head p {
+    color: #8190a6 !important;
+}
+
+html[data-theme="dark"] .plan-exercise-item {
+    background: #111d2e !important;
+
+    border-color: #293b53 !important;
+}
+
+html[data-theme="dark"] .plan-exercise-item:hover {
+    background: #162338 !important;
+
+    border-color: #3b5575 !important;
+}
+
+html[data-theme="dark"] .plan-exercise-item strong {
+    color: #edf2f9 !important;
+}
+
+html[data-theme="dark"] .plan-exercise-item span {
+    background: #172d52 !important;
+    color: #619cff !important;
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+html[data-theme="dark"] .settings-card {
+    background:
+        linear-gradient(
+            145deg,
+            #111b2b,
+            #0f1928
+        ) !important;
+
+    border-color: #29394f !important;
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.16) !important;
+}
+
+html[data-theme="dark"] .settings-card-header {
+    border-bottom-color: #26354b !important;
+}
+
+html[data-theme="dark"] .settings-card-header h2 {
+    color: #f4f7fc !important;
+}
+
+html[data-theme="dark"] .settings-card-header p {
+    color: #8291a7 !important;
+}
+
+html[data-theme="dark"] .setting-row {
+    border-bottom-color: #26354b !important;
+}
+
+html[data-theme="dark"] .setting-title {
+    color: #e8eef7 !important;
+}
+
+html[data-theme="dark"] .setting-description {
+    color: #7f8da4 !important;
+}
+
+html[data-theme="dark"] .setting-select {
+    background: #121e30 !important;
+
+    color: #e8eef7 !important;
+
+    border-color: #2c3d55 !important;
+}
+
+html[data-theme="dark"] .setting-select:hover {
+    border-color: #415a7c !important;
+}
+
+html[data-theme="dark"] .settings-save-area {
+    background: #0e1725 !important;
+
+    border-top-color: #26354b !important;
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+html[data-theme="dark"] .toast {
+    background: #f4f7fb !important;
+
+    color: #101827 !important;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35) !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+html[data-theme="dark"] .mobile-topbar {
+    background: rgba(13, 20, 34, 0.94) !important;
+
+    border-bottom-color: #26344a !important;
+}
+
+html[data-theme="dark"] .mobile-topbar .logo {
+    color: #f4f7fb !important;
+}
+
+html[data-theme="dark"] .mobile-bottom-nav {
+    background: rgba(13, 20, 34, 0.96) !important;
+
+    border-top-color: #26344a !important;
+}
+
+html[data-theme="dark"] .mobile-bottom-nav a {
+    color: #718097 !important;
+}
+
+html[data-theme="dark"] .mobile-bottom-nav a.active {
+    color: #5d96ff !important;
+}
+
+
+/* =========================================================
+   SCROLLBARS
+   ========================================================= */
+
+html[data-theme="dark"] * {
+    scrollbar-color: #34465f #0b1320;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #0b1320;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #34465f;
+    border-radius: 10px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #46617f;
+}
+
+/* =========================================
+   GLOBAL HORIZONTAL OVERFLOW FIX
+========================================= */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   GYMMAN — SIDEBAR STABILITY FIX
+========================================= */
+
+#appSidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    height: 100vh !important;
+    max-height: 100vh !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    overscroll-behavior-x: none !important;
+    overscroll-behavior-y: contain !important;
+
+    touch-action: pan-y !important;
+}
+
+#appSidebar * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    overflow-x: hidden !important;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE FIX — EXERCISES & APP PAGES
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Prevent the entire website from moving sideways */
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Main content must stay below the mobile top header */
+    .app-main {
+        width: 100%;
+        max-width: 100%;
+        padding-top: 72px;
+        padding-bottom: 82px;
+        overflow-x: hidden;
+    }
+
+    /* Page content */
+    .page-wrap {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 16px;
+        padding-right: 16px;
+        overflow-x: hidden;
+    }
+
+    /* Exercise page heading */
+    .page-topbar {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 24px;
+    }
+
+    .page-title {
+        max-width: 100%;
+        font-size: 38px;
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        word-break: normal;
+    }
+
+    .page-subtitle {
+        max-width: 100%;
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    /* Search box */
+    .exercise-toolbar {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* =====================================================
+       FILTER BUTTONS
+       Scroll ONLY horizontally inside this row
+    ===================================================== */
+
+    .filter-row {
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        gap: 8px;
+
+        padding-bottom: 6px;
+
+        scrollbar-width: none;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-row::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-row > * {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    /* =====================================================
+       EXERCISE CARDS
+    ===================================================== */
+
+    .exercise-grid {
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        overflow-x: hidden;
+    }
+
+    .exercise-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    /* Make images / visual areas stay inside card */
+    .exercise-card img,
+    .exercise-card svg {
+        max-width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .app-main {
+        padding-top: 70px;
+        padding-bottom: 80px;
+    }
+
+    .page-wrap {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .page-title {
+        font-size: 34px;
+    }
+
+    .page-subtitle {
+        font-size: 12.5px;
+    }
+
+}
+
+/* =========================================================
+   PROGRESS PAGE — MOBILE STATS FIX
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Progress stat cards become one clean column */
+    .stats-grid {
+        width: 100%;
+        max-width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        overflow: visible;
+    }
+
+    .stats-grid .stat-card {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Keep everything inside each card */
+    .stat-card {
+        display: grid;
+        grid-template-columns: 42px 1fr auto;
+        grid-template-areas:
+            "icon label value"
+            "icon meta value";
+
+        align-items: center;
+        column-gap: 12px;
+
+        min-height: 88px;
+        padding: 16px;
+    }
+
+    .stat-card .stat-icon {
+        grid-area: icon;
+    }
+
+    .stat-card .stat-label {
+        grid-area: label;
+    }
+
+    .stat-card .stat-meta {
+        grid-area: meta;
+    }
+
+    .stat-card .stat-value {
+        grid-area: value;
+
+        white-space: nowrap;
+        text-align: right;
+    }
+
+    /* Extra progress statistics */
+    .progress-extra-stats {
+        margin-top: 12px;
+    }
+
+    /* Smaller values such as Top Muscle / Volume */
+    .progress-small-value {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .stat-card {
+        grid-template-columns: 40px minmax(0, 1fr) auto;
+        column-gap: 10px;
+
+        padding: 14px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .stat-meta {
+        font-size: 10px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+    }
+
+    .progress-small-value {
+        max-width: 95px;
+        font-size: 17px;
+    }
+
+}
+
+/* =========================================
+   MOBILE ACCOUNT MENU
+   ========================================= */
+
+.mobile-user-menu {
+    position: absolute;
+    top: 54px;
+    right: 0;
+
+    width: 220px;
+
+    background: var(--card, #ffffff);
+    border: 1px solid var(--line, #e5e7eb);
+    border-radius: 16px;
+
+    padding: 8px;
+
+    box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.16);
+
+    z-index: 1200;
+}
+
+.mobile-user-menu[hidden] {
+    display: none !important;
+}
+
+.mobile-user-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 10px;
+}
+
+.mobile-user-menu-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--blue, #2563eb);
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.mobile-user-menu-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mobile-user-menu-info strong {
+    color: var(--ink, #111827);
+    font-size: 13px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mobile-user-menu-info span {
+    color: #98a2b3;
+    font-size: 10px;
+}
+
+.mobile-user-menu-divider {
+    height: 1px;
+
+    margin: 6px 4px;
+
+    background: var(--line, #e5e7eb);
+}
+
+.mobile-user-menu-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 11px 10px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: var(--ink, #111827);
+
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.mobile-user-menu-item:hover {
+    background: #f5f7fa;
+}
+
+.mobile-user-menu-item svg {
+    width: 18px;
+    height: 18px;
+
+    flex: 0 0 18px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+}
+
+.mobile-user-menu-logout {
+    color: #dc2626;
+}
+
+
+/* =========================================
+   MOBILE ACCOUNT MENU POSITION
+   ========================================= */
+
+@media (max-width: 760px) {
+
+    .mobile-topbar {
+        position: relative;
+    }
+
+    .mobile-user {
+        position: relative;
+        z-index: 1201;
+    }
+
+    .mobile-user-menu {
+        position: fixed;
+
+        top: 58px;
+        right: 14px;
+
+        width: min(220px, calc(100vw - 28px));
+    }
+
+}
+
+
+/* =========================================
+   MOBILE ACCOUNT MENU — DARK MODE
+   ========================================= */
+
+html[data-theme="dark"] .mobile-user-menu {
+    background: #111827 !important;
+    border-color: #263244 !important;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-theme="dark"] .mobile-user-menu-info strong {
+    color: #f4f7fb !important;
+}
+
+html[data-theme="dark"] .mobile-user-menu-info span {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .mobile-user-menu-divider {
+    background: #263244 !important;
+}
+
+html[data-theme="dark"] .mobile-user-menu-item {
+    color: #dbe5f2 !important;
+}
+
+html[data-theme="dark"] .mobile-user-menu-item:hover {
+    background: #1b2738 !important;
+}
+
+html[data-theme="dark"] .mobile-user-menu-logout {
+    color: #f87171 !important;
+}
+/* =========================================
+   SETTINGS PAGE — MOBILE ALIGNMENT FIX
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .app-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+    }
+
+    .app-main .page-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        box-sizing: border-box !important;
+    }
+
+    .app-main .page-topbar {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .app-main .settings-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+}
+/* =========================================================
+   SETTINGS PAGE — FINAL MOBILE UI FIX
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Main page */
+    .app-main {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        padding-top: 72px !important;
+        padding-bottom: 82px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Center all page content */
+    .app-main .page-wrap {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 auto !important;
+
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+
+        box-sizing: border-box !important;
+    }
+
+    /* Settings heading */
+    .app-main .page-topbar {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 0 22px 0 !important;
+
+        display: block !important;
+        box-sizing: border-box !important;
+    }
+
+    .app-main .page-topbar .eyebrow {
+        font-size: 9px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .app-main .page-topbar .page-title {
+        margin: 7px 0 8px !important;
+
+        font-size: 32px !important;
+        line-height: 1.1 !important;
+        letter-spacing: -1px !important;
+
+        max-width: 100% !important;
+    }
+
+    .app-main .page-topbar .page-subtitle {
+        max-width: 320px !important;
+
+        margin: 0 !important;
+
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Settings card */
+    .app-main .settings-card {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 !important;
+
+        box-sizing: border-box !important;
+
+        border-radius: 18px !important;
+    }
+
+    /* Settings card header */
+    .app-main .settings-card-header {
+        padding: 24px 20px !important;
+    }
+
+    .app-main .settings-card-header h2 {
+        font-size: 21px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 6px !important;
+    }
+
+    .app-main .settings-card-header p {
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+        max-width: 280px !important;
+    }
+
+    /* Individual settings */
+    .app-main .setting-row {
+        padding: 20px !important;
+    }
+
+    .app-main .setting-title {
+        font-size: 14px !important;
+    }
+
+    .app-main .setting-description {
+        font-size: 11px !important;
+        line-height: 1.45 !important;
+    }
+
+    .app-main .setting-row select,
+    .app-main .setting-row input {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        box-sizing: border-box !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .app-main .page-wrap {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .app-main .page-topbar .page-title {
+        font-size: 30px !important;
+    }
+
+    .app-main .page-topbar .page-subtitle {
+        font-size: 11.5px !important;
+        max-width: 300px !important;
+    }
+
+    .app-main .settings-card-header {
+        padding: 22px 18px !important;
+    }
+
+    .app-main .setting-row {
+        padding: 18px !important;
+    }
+}
+/* =========================================================
+   GYMMAN SETTINGS — MOBILE HEADER ALIGNMENT
+   ONLY FIXES SETTINGS / PREFERENCES / SUBTITLE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    body[data-page="settings"] .app-main {
+        padding-top: 78px !important;
+        padding-bottom: 82px !important;
+    }
+
+    body[data-page="settings"] .page-wrap {
+        padding-left: 22px !important;
+        padding-right: 22px !important;
+        box-sizing: border-box !important;
+    }
+
+    body[data-page="settings"] .page-topbar {
+        width: 100% !important;
+        margin: 0 0 28px 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    body[data-page="settings"] .page-topbar .eyebrow {
+        display: block !important;
+
+        margin: 0 0 10px 0 !important;
+        padding: 0 !important;
+
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+
+        letter-spacing: 2.2px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-title {
+        margin: 0 0 12px 0 !important;
+        padding: 0 !important;
+
+        font-size: 34px !important;
+        line-height: 1.12 !important;
+        letter-spacing: -1.2px !important;
+
+        max-width: 100% !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-subtitle {
+        margin: 0 !important;
+        padding: 0 !important;
+
+        max-width: 310px !important;
+
+        font-size: 13px !important;
+        line-height: 1.55 !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    body[data-page="settings"] .page-wrap {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    body[data-page="settings"] .page-topbar {
+        margin-bottom: 26px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .eyebrow {
+        margin-bottom: 9px !important;
+        font-size: 9px !important;
+        letter-spacing: 2px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-title {
+        margin-bottom: 11px !important;
+
+        font-size: 32px !important;
+        line-height: 1.12 !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-subtitle {
+        max-width: 300px !important;
+
+        font-size: 12px !important;
+        line-height: 1.55 !important;
+    }
+}
+
+/* =========================================================
+   SETTINGS HEADER — MOBILE CENTER ALIGNMENT
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    body[data-page="settings"] .page-topbar {
+        width: 100% !important;
+        max-width: 320px !important;
+
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        padding: 0 !important;
+
+        text-align: center !important;
+
+        box-sizing: border-box !important;
+    }
+
+    body[data-page="settings"] .page-topbar .eyebrow {
+        display: block !important;
+
+        margin: 0 0 10px !important;
+        padding: 0 !important;
+
+        text-align: center !important;
+
+        font-size: 10px !important;
+        letter-spacing: 2px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-title {
+        margin: 0 0 12px !important;
+        padding: 0 !important;
+
+        text-align: center !important;
+
+        font-size: 32px !important;
+        line-height: 1.15 !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-subtitle {
+        width: 100% !important;
+        max-width: 300px !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        text-align: center !important;
+
+        font-size: 12px !important;
+        line-height: 1.55 !important;
+    }
+
+}
+
+/* =========================================================
+   GYMMAN MOBILE — FINAL SPACING FIX
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Remove the excessive gap below the fixed top bar */
+    .app-main {
+        padding-top: 30px !important;
+        padding-bottom: 82px !important;
+    }
+
+    /* Keep normal mobile page width */
+    .page-wrap {
+        width: calc(100% - 32px) !important;
+        max-width: none !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        padding: 30px 0 45px !important;
+
+        box-sizing: border-box !important;
+    }
+
+    /* Normal page headings */
+    .page-topbar {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        padding: 0 !important;
+
+        text-align: left !important;
+    }
+
+    /* SETTINGS ONLY */
+    body[data-page="settings"] .page-topbar {
+        margin-bottom: 26px !important;
+        text-align: left !important;
+    }
+
+    body[data-page="settings"] .page-topbar .eyebrow {
+        margin: 0 0 9px 0 !important;
+        text-align: left !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-title {
+        margin: 0 0 10px 0 !important;
+        text-align: left !important;
+
+        font-size: 34px !important;
+        line-height: 1.12 !important;
+        letter-spacing: -1.5px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-subtitle {
+        max-width: 310px !important;
+
+        margin: 0 !important;
+
+        text-align: left !important;
+
+        font-size: 12.5px !important;
+        line-height: 1.55 !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .app-main {
+        padding-top: 30px !important;
+    }
+
+    .page-wrap {
+        width: calc(100% - 32px) !important;
+
+        padding-top: 30px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-title {
+        font-size: 32px !important;
+    }
+
+    body[data-page="settings"] .page-topbar .page-subtitle {
+        max-width: 300px !important;
+        font-size: 12px !important;
+    }
+}
+
+
+/* =========================================================
+   GYMMAN SETTINGS — MOBILE CONTENT SPACING
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    /* Settings main card */
+    body[data-page="settings"] .settings-card {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 !important;
+        overflow: hidden;
+    }
+
+    /* Preferences heading + description */
+    body[data-page="settings"] .settings-card > * {
+        box-sizing: border-box;
+    }
+
+    body[data-page="settings"] .settings-card .section-head,
+    body[data-page="settings"] .settings-card > .settings-card-header,
+    body[data-page="settings"] .settings-card > header {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* If Preferences is inside the first card section */
+    body[data-page="settings"] .settings-card .settings-section:first-child,
+    body[data-page="settings"] .settings-card .settings-header {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* Individual preference rows */
+    body[data-page="settings"] .settings-card .setting-row,
+    body[data-page="settings"] .settings-card .preference-row {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* Select / controls stay nicely inside */
+    body[data-page="settings"] .settings-card select,
+    body[data-page="settings"] .settings-card input {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Make the Settings heading breathe */
+    body[data-page="settings"] .settings-card h2 {
+        line-height: 1.2;
+    }
+
+    body[data-page="settings"] .settings-card p {
+        line-height: 1.55;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    body[data-page="settings"] .settings-card .section-head,
+    body[data-page="settings"] .settings-card > .settings-card-header,
+    body[data-page="settings"] .settings-card > header,
+    body[data-page="settings"] .settings-card .settings-section:first-child,
+    body[data-page="settings"] .settings-card .settings-header,
+    body[data-page="settings"] .settings-card .setting-row,
+    body[data-page="settings"] .settings-card .preference-row {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+}
+
+/* =========================================================
+   GYMMAN — MOBILE TOP SPACING FIX
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .app-main {
+        padding-top: 20px !important;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .app-main {
+        padding-top: 20px !important;
+    }
+
+}
+
+/* =========================================================
+   SETTINGS MOBILE — REMOVE EXCESSIVE TOP GAP
+   ========================================================= */
+
+@media (max-width: 700px) {
+    body[data-page="settings"] .app-main {
+        padding-top: 8px !important;
+    }
+
+    body[data-page="settings"] .settings-page {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+
+/* =========================================================
+   GYMMAN — MOBILE PAGE TOP SPACING FIX
+   Removes excessive gap below the mobile topbar
+   ========================================================= */
+
+@media (max-width: 760px) {
+    .app-main {
+        padding-top: 8px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .app-main {
+        padding-top: 8px !important;
+    }
+}

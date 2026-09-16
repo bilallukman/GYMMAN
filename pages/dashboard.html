@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GYMMAN — Home</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+
+<body data-page="home">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside id="appSidebar"></aside>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <div class="app-main">
+
+        <main class="page-wrap">
+
+
+            <!-- =====================================
+                 TOP HEADER
+            ====================================== -->
+
+            <header class="page-topbar">
+
+                <div>
+
+                    <span class="eyebrow">
+                        GYMMAN HOME
+                    </span>
+
+                    <h1 class="page-title" id="welcomeTitle">
+                        Welcome back.
+                    </h1>
+
+                    <p class="page-subtitle">
+                        Your training, progress and fitness tools — all in one place.
+                    </p>
+
+                </div>
+
+
+                <a class="btn btn-primary"
+                   href="workout.html">
+
+                    Start a workout
+
+                </a>
+
+            </header>
+
+
+
+            <!-- =====================================
+                 STATISTICS
+            ====================================== -->
+
+            <section class="stats-grid">
+
+
+                <!-- WORKOUTS -->
+
+                <article class="card stat-card">
+
+                    <div class="stat-icon">
+                        W
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span class="stat-label">
+                            WORKOUTS
+                        </span>
+
+                        <strong class="stat-value"
+                                id="workoutCount">
+                            0
+                        </strong>
+
+                        <span class="stat-meta">
+                            Total logged
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- BMI -->
+
+                <article class="card stat-card">
+
+                    <div class="stat-icon">
+                        B
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span class="stat-label">
+                            BMI
+                        </span>
+
+                        <strong class="stat-value"
+                                id="bmiValue">
+                            --
+                        </strong>
+
+                        <span class="stat-meta">
+                            Latest reading
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- CALORIES -->
+
+                <article class="card stat-card">
+
+                    <div class="stat-icon">
+                        K
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span class="stat-label">
+                            CALORIES
+                        </span>
+
+                        <strong class="stat-value"
+                                id="caloriesValue">
+                            0
+                        </strong>
+
+                        <span class="stat-meta">
+                            Total recorded
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- STREAK -->
+
+                <article class="card stat-card">
+
+                    <div class="stat-icon">
+                        S
+                    </div>
+
+                    <div class="stat-info">
+
+                        <span class="stat-label">
+                            STREAK
+                        </span>
+
+                        <strong class="stat-value"
+                                id="streakValue">
+                            0
+                        </strong>
+
+                        <span class="stat-meta">
+                            Consecutive days
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 HOME CONTENT
+            ====================================== -->
+
+            <section class="home-grid">
+
+
+                <!-- =================================
+                     LEFT COLUMN
+                ================================== -->
+
+                <div class="home-stack">
+
+
+                    <!-- TRAINING HERO -->
+
+                    <article class="hero-card">
+
+                        <span class="eyebrow">
+                            TRAINING
+                        </span>
+
+
+                        <h2 id="heroHeading">
+                            Ready for your next session?
+                        </h2>
+
+
+                        <p id="heroText">
+                            Log your first workout and Gymman will start building your personal training history.
+                        </p>
+
+
+                        <div class="hero-actions">
+
+                            <a class="btn btn-primary"
+                               href="workout.html">
+
+                                Log workout
+
+                            </a>
+
+
+                            <a class="btn btn-secondary"
+                               href="exercises.html">
+
+                                Browse exercises
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- Latest workout -->
+
+                        <div class="training-card"
+                             id="latestTraining">
+
+                            <div>
+
+                                <strong>
+                                    No workout logged yet
+                                </strong>
+
+                                <span>
+                                    Your recent training will appear here.
+                                </span>
+
+                            </div>
+
+
+                            <span class="training-badge">
+                                GET STARTED
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================
+                         RECENT ACTIVITY
+                    ================================== -->
+
+                    <article class="card card-pad">
+
+                        <div class="section-head">
+
+                            <div>
+
+                                <h2>
+                                    Recent activity
+                                </h2>
+
+                                <p>
+                                    Your latest training records
+                                </p>
+
+                            </div>
+
+
+                            <a class="section-link"
+                               href="workout.html">
+
+                                View all
+
+                            </a>
+
+                        </div>
+
+
+                        <div class="activity-list"
+                             id="recentActivity">
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+
+                <!-- =================================
+                     RIGHT COLUMN
+                ================================== -->
+
+                <div class="home-stack">
+
+
+                    <!-- =================================
+                         WEEKLY ACTIVITY
+                    ================================== -->
+
+                    <article class="card card-pad">
+
+                        <div class="section-head">
+
+                            <div>
+
+                                <h2>
+                                    Weekly activity
+                                </h2>
+
+                                <p>
+                                    Workout entries across the last 7 days
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="week-chart"
+                             id="weekChart">
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =================================
+                         MUSCLE FOCUS
+                    ================================== -->
+
+                    <article class="card card-pad">
+
+                        <div class="section-head">
+
+                            <div>
+
+                                <h2>
+                                    Muscle focus
+                                </h2>
+
+                                <p>
+                                    Sets logged by muscle group
+                                </p>
+
+                            </div>
+
+
+                            <a class="section-link"
+                               href="progress.html">
+
+                                Progress
+
+                            </a>
+
+                        </div>
+
+
+                        <div class="progress-list"
+                             id="muscleProgress">
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================================
+                 FITNESS TOOLS
+            ====================================== -->
+
+            <section style="margin-top:18px">
+
+                <div class="section-head">
+
+                    <div>
+
+                        <h2>
+                            Tools for your training
+                        </h2>
+
+                        <p>
+                            Keep your health metrics and nutrition organized.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tool-grid">
+
+
+                    <!-- BMI -->
+
+                    <a class="card tool-card-app"
+                       href="bmi.html">
+
+                        <div class="tool-icon">
+                            BMI
+                        </div>
+
+                        <h3>
+                            BMI Calculator
+                        </h3>
+
+                        <p>
+                            Save your latest height, weight and BMI reading.
+                        </p>
+
+                    </a>
+
+
+
+                    <!-- CALORIES -->
+
+                    <a class="card tool-card-app"
+                       href="calories.html">
+
+                        <div class="tool-icon">
+                            CAL
+                        </div>
+
+                        <h3>
+                            Calories
+                        </h3>
+
+                        <p>
+                            Estimate activity calories and keep a running total.
+                        </p>
+
+                    </a>
+
+
+
+                    <!-- DIET -->
+
+                    <a class="card tool-card-app"
+                       href="diet.html">
+
+                        <div class="tool-icon">
+                            DIET
+                        </div>
+
+                        <h3>
+                            Diet Planner
+                        </h3>
+
+                        <p>
+                            Keep your meals and daily water intake in one place.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="../js/app-shell.js"></script>
+
+    <script src="../js/dashboard.js"></script>
+
+
+</body>
+
+</html>

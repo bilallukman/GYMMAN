@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GYMMAN — Create account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+<a href="../index.html" class="back-link">← Back to GYMMAN</a>
+<main class="auth-layout">
+<section class="auth-brand"><a href="../index.html">GYMMAN</a><span>YOUR PERSONAL TRAINING SPACE</span><h1>Start building your training history.</h1><p>Create your account and use GYMMAN to log workouts, track health metrics and stay consistent.</p></section>
+<section class="auth-card"><span class="auth-eyebrow">GET STARTED</span><h2>Create your account</h2><p class="auth-muted">Use a strong password to keep your account protected.</p>
+<form id="registerForm" class="auth-form">
+<input type="text" id="username" placeholder="Username" required autocomplete="username">
+<input type="email" id="email" placeholder="Email address" required autocomplete="email">
+<input type="password" id="password" placeholder="Password" required autocomplete="new-password">
+<p id="passwordHint" class="password-hint">8+ chars • uppercase • lowercase • number • special character</p>
+<input type="password" id="confirmPassword" placeholder="Confirm password" required autocomplete="new-password">
+<button type="submit">Create account</button>
+<p id="registerMessage" class="error"></p>
+</form>
+<p class="auth-footer">Already have an account? <a href="login.html">Log in</a></p>
+</section></main>
+<script src="../js/login.js"></script>
+</body></html>

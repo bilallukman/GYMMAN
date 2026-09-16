@@ -1,0 +1,1166 @@
+/* =========================================
+   SMART GYM - PREMIUM LANDING PAGE
+   ========================================= */
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+
+    background: #ffffff;
+
+    color: #14213d;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+nav {
+
+    width: 100%;
+
+    height: 72px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 7%;
+
+    background: rgba(248, 250, 252, 0.92);
+
+    backdrop-filter: blur(14px);
+
+    -webkit-backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid #e2e8f0;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #14213d;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+}
+
+nav ul {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    list-style: none;
+}
+
+
+nav ul li a {
+
+    color: #526071;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition: 0.2s ease;
+
+    position: relative;
+}
+
+
+nav ul li a:hover {
+
+    color: #2563eb;
+}
+
+
+nav ul li a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -6px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #2563eb;
+
+    transition: 0.2s ease;
+}
+
+
+nav ul li a:hover::after {
+
+    width: 100%;
+}
+
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+
+.hero {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    min-height: 570px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 80px 30px;
+
+    animation: fadeUp 0.6s ease;
+}
+
+
+.hero-content {
+
+    max-width: 950px;
+}
+
+
+.hero-label {
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+
+.hero h1 {
+
+    color: #111827;
+
+    font-size: 68px;
+
+    line-height: 1.05;
+
+    font-weight: 700;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 25px;
+}
+
+
+.hero-description {
+
+    max-width: 680px;
+
+    color: #667085;
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   HERO BUTTONS
+   ========================================= */
+
+.buttons {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.btn1,
+.btn2 {
+
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+
+.btn1 {
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    border: 1px solid #2563eb;
+}
+
+
+.btn1:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+}
+
+
+.btn2 {
+
+    background: #ffffff;
+
+    color: #14213d;
+
+    border: 1px solid #cbd5e1;
+}
+
+
+.btn2:hover {
+
+    background: #f8fafc;
+
+    border-color: #2563eb;
+
+    color: #2563eb;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   FEATURES SECTION
+   ========================================= */
+
+.features-section {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 70px 30px;
+}
+
+
+.section-heading {
+
+    margin-bottom: 35px;
+}
+
+
+.section-heading h2 {
+
+    color: #111827;
+
+    font-size: 42px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-heading p {
+
+    color: #667085;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   FEATURE CARDS
+   ========================================= */
+
+.features {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.card {
+
+    background: rgba(248, 250, 252, 0.78);
+
+    border: 1px solid rgba(203, 213, 225, 0.75);
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    min-height: 230px;
+
+    backdrop-filter: blur(14px);
+
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 4px 20px rgba(15, 23, 42, 0.04);
+
+    transition: all 0.25s ease;
+}
+
+
+.card:hover {
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-color: #cbd5e1;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+
+.card-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: #eaf1ff;
+
+    color: #2563eb;
+
+    font-size: 25px;
+
+    font-weight: 500;
+
+    margin-bottom: 25px;
+}
+
+
+.card h2 {
+
+    color: #172033;
+
+    font-size: 20px;
+
+    font-weight: 650;
+
+    margin-bottom: 10px;
+}
+
+
+.card p {
+
+    color: #526071;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   USER REVIEWS
+   ========================================= */
+
+.reviews-section {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 70px 30px;
+}
+
+
+.reviews-heading {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+
+.reviews-heading h2 {
+
+    color: #111827;
+
+    font-size: 38px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+
+/* Reviews grid */
+
+.reviews {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+/* Review card */
+
+.review-card {
+
+    position: relative;
+
+    background: #f1f6ff;
+
+    border: 1px solid #d8e1ee;
+
+    border-radius: 22px;
+
+    padding: 35px 30px;
+
+    min-height: 285px;
+
+    transition: all 0.25s ease;
+}
+
+
+.review-card:hover {
+
+    transform: translateY(-5px);
+
+    background: #edf4ff;
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* Quote */
+
+.quote {
+
+    position: absolute;
+
+    top: 30px;
+
+    left: 30px;
+
+    color: #64748b;
+
+    font-size: 55px;
+
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+
+/* Name and stars */
+
+.review-content {
+
+    margin-left: 70px;
+
+    margin-bottom: 38px;
+}
+
+
+.review-content h3 {
+
+    color: #111827;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    margin-bottom: 5px;
+}
+
+
+.stars {
+
+    color: #fbbf24;
+
+    font-size: 18px;
+
+    letter-spacing: 2px;
+}
+
+
+/* Review text */
+
+.review-card > p {
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CALL TO ACTION
+   ========================================= */
+
+.cta {
+
+    max-width: 1140px;
+
+    margin: 0 auto 70px;
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 22px;
+}
+
+
+.cta h2 {
+
+    color: #111827;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+
+.cta p {
+
+    color: #667085;
+
+    font-size: 15px;
+
+    margin-bottom: 25px;
+}
+
+
+.cta-button {
+
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+
+.cta-button:hover {
+
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+}
+
+
+/* =========================================
+   CONTACT
+   ========================================= */
+
+.contact {
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    background: #f8fafc;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+
+.contact h2 {
+
+    color: #111827;
+
+    font-size: 34px;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+
+.contact p {
+
+    color: #667085;
+
+    font-size: 15px;
+
+    margin: 10px 0;
+}
+
+
+.footer-line {
+
+    width: 80px;
+
+    height: 1px;
+
+    background: #cbd5e1;
+
+    margin: 30px auto;
+}
+
+
+.contact .copyright {
+
+    color: #667085;
+
+    font-size: 13px;
+
+    margin-top: 20px;
+}
+
+
+.contact .developer {
+
+    color: #14213d;
+
+    font-size: 13px;
+}
+
+
+.contact strong {
+
+    color: #2563eb;
+}
+
+
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .hero h1 {
+
+        font-size: 52px;
+    }
+
+
+    .features {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .reviews {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    nav {
+
+        height: auto;
+
+        padding: 18px 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    nav ul {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    nav ul li a {
+
+        font-size: 12px;
+    }
+
+
+    .hero {
+
+        min-height: 500px;
+
+        padding: 60px 20px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 40px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .hero-description {
+
+        font-size: 15px;
+    }
+
+
+    .buttons {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        max-width: 250px;
+    }
+
+
+    .btn1,
+    .btn2 {
+
+        text-align: center;
+    }
+
+
+    .features-section {
+
+        padding: 50px 20px;
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 32px;
+    }
+
+
+    .reviews-section {
+
+        padding: 50px 20px;
+    }
+
+
+    .reviews-heading h2 {
+
+        font-size: 30px;
+    }
+
+
+    .review-card {
+
+        padding: 30px 25px;
+    }
+
+
+    .cta {
+
+        margin: 20px;
+
+        padding: 40px 20px;
+    }
+
+
+    .cta h2 {
+
+        font-size: 27px;
+    }
+}
+
+/* =========================================
+   MOBILE RESPONSIVE - INDEX PAGE
+========================================= */
+
+@media (max-width: 800px) {
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+    /* =====================================
+       NAVIGATION
+    ===================================== */
+
+    nav {
+        padding: 15px 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        position: sticky;
+        top: 0;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    nav ul {
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+    }
+
+    nav ul li a {
+        font-size: 13px;
+    }
+
+
+    /* =====================================
+       HERO
+    ===================================== */
+
+    .hero {
+        min-height: auto;
+
+        padding: 70px 20px 50px;
+
+        text-align: center;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+
+        line-height: 1.1;
+
+        letter-spacing: -1.5px;
+
+        margin-bottom: 18px;
+    }
+
+    .hero p {
+        width: 100%;
+
+        max-width: 500px;
+
+        font-size: 15px;
+
+        line-height: 1.7;
+
+        margin: 0 auto 25px;
+    }
+
+
+    /* =====================================
+       BUTTONS
+    ===================================== */
+
+    .buttons {
+        width: 100%;
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 12px;
+
+        flex-wrap: wrap;
+    }
+
+    .btn1,
+    .btn2 {
+        padding: 12px 24px;
+
+        font-size: 15px;
+    }
+
+
+    /* =====================================
+       FEATURES
+    ===================================== */
+
+    .features {
+        padding: 30px 20px 40px;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+
+        padding: 24px;
+
+        border-radius: 18px;
+    }
+
+    .card h2 {
+        font-size: 20px;
+
+        margin-bottom: 12px;
+    }
+
+    .card p {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =====================================
+       STATISTICS / REVIEW BOXES
+    ===================================== */
+
+    .stats {
+        padding: 30px 20px;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .stat-box {
+        width: 100%;
+
+        padding: 20px;
+
+        border-radius: 16px;
+    }
+
+    .stat-box h2 {
+        font-size: 28px;
+    }
+
+    .stat-box p {
+        font-size: 13px;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================
+       CONTACT
+    ===================================== */
+
+    .contact {
+        padding: 50px 20px;
+
+        margin-top: 30px;
+    }
+
+    .contact h2 {
+        font-size: 28px;
+
+        margin-bottom: 20px;
+    }
+
+    .contact p {
+        font-size: 14px;
+
+        line-height: 1.6;
+
+        margin: 10px 0;
+    }
+
+
+    /* =====================================
+       HERO IMAGE
+    ===================================== */
+
+    .hero-image {
+        width: 100%;
+
+        margin-top: 30px;
+    }
+
+    .hero-image img {
+        width: 280px;
+
+        max-width: 90%;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 23px;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 12px;
+    }
+
+
+    .hero {
+        padding-top: 55px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+
+    .btn1,
+    .btn2 {
+        width: 100%;
+
+        max-width: 280px;
+    }
+
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-box {
+        text-align: center;
+    }
+
+
+    .contact h2 {
+        font-size: 25px;
+    }
+
+}

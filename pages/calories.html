@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>GYMMAN — Calories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../css/app.css">
+</head><body data-page="calories"><aside id="appSidebar"></aside><div class="app-main"><main class="page-wrap">
+<header class="page-topbar"><div><span class="eyebrow">ACTIVITY METRIC</span><h1 class="page-title">Track your calories.</h1><p class="page-subtitle">Estimate calories burned from an activity and save the result to your GYMMAN history.</p></div></header>
+<section class="form-layout"><article class="card form-card"><div class="section-head"><div><h2>Calculate calories</h2><p>Estimate an activity session.</p></div></div>
+<div class="form-group"><label for="weight">Weight (kg)</label><input class="form-input" type="number" id="weight" min="1" placeholder="e.g. 72"></div>
+<div class="form-group"><label for="minutes">Workout duration (min)</label><input class="form-input" type="number" id="minutes" min="1" placeholder="e.g. 45"></div>
+<div class="form-group"><label for="activity">Activity</label><select class="form-select" id="activity"><option value="8">Running</option><option value="6">Cycling</option><option value="5">Walking</option><option value="7">Gym Workout</option></select></div>
+<button class="btn btn-primary" id="calculateCalories">Calculate calories</button></article>
+<article class="card form-card"><span class="eyebrow">LATEST CALCULATION</span><div id="result" class="empty-state"><h3>Calories burned will appear here</h3><p>Complete a calculation to save an activity record.</p></div></article></section>
+</main></div><script src="../js/app-shell.js"></script><script src="../js/calories.js"></script></body></html>
