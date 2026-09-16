@@ -19,8 +19,7 @@
         return;
     }
 
-    const apiBase =
-    "https://gymman.onrender.com/api";
+    const apiBase = "https://gymman.onrender.com/api";
 
     const authReady = (async () => {
         const response = await fetch(
