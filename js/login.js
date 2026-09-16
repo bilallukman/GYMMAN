@@ -7,11 +7,7 @@
 // Phone:  http://192.168.1.35:3000
 // Deploy: https://your-domain.com:3000
 
-const API =
-    window.location.protocol === "file:"
-        ? "http://localhost:3000/api/auth"
-        : `${window.location.protocol}//${window.location.hostname}:3000/api/auth`;
-
+const API = "https://gymman.onrender.com/api/auth";
 
 // ==========================================
 // PASSWORD HELPERS
