@@ -7,15 +7,6 @@
     // ==========================================
     // GET VERIFICATION TOKEN
     // ==========================================
-    // Supports the secure fragment format:
-    // verify-email.html#token=...
-    //
-    // Also temporarily supports the old format:
-    // verify-email.html?token=...
-    //
-    // The email service will be changed later
-    // to generate fragment-based links only.
-    // ==========================================
 
     function getVerificationToken() {
 
@@ -66,7 +57,7 @@
     // ==========================================
 
     const API =
-        `${window.location.protocol}//${window.location.hostname}:3000/api/auth`;
+        "https://gymman.onrender.com/api/auth";
 
 
     // ==========================================
@@ -128,8 +119,7 @@
                 "Email verified successfully. You can now log in.";
 
 
-            // Remove the token from the
-            // browser URL after successful use.
+            // Remove token from browser URL
             history.replaceState(
                 null,
                 "",

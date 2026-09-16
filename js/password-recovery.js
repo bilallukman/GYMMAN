@@ -1,4 +1,4 @@
-const AUTH_API = "http://localhost:3000/api/auth";
+const AUTH_API = "https://gymman.onrender.com/api/auth";
 
 
 // ==========================================
@@ -55,9 +55,6 @@ function passwordHint(value) {
 //
 // Also temporarily supports the old format:
 // reset-password.html?token=...
-//
-// The email service will be changed later
-// to generate fragment-based links only.
 // ==========================================
 
 function getResetToken() {
