@@ -20,7 +20,7 @@
     }
 
     const apiBase =
-        "http://localhost:3000/api";
+    "https://gymman.onrender.com/api";
 
     const authReady = (async () => {
         const response = await fetch(
