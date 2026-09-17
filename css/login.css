@@ -766,3 +766,20 @@ a {
         margin-top: 8px;
     }
 }
+
+/* =========================================
+   MOBILE LOGIN — REDUCE EMPTY SPACE
+========================================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding-top: 48px;
+        padding-bottom: 12px;
+    }
+
+    .auth-layout:has(#loginForm) {
+        transform: translateY(-8px);
+    }
+
+}
