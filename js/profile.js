@@ -669,20 +669,19 @@
                     }
 
 
-                    if (
-    newPassword.length < 12 ||
-    !/[A-Z]/.test(newPassword) ||
-    !/[a-z]/.test(newPassword) ||
-    !/[0-9]/.test(newPassword) ||
-    !/[^A-Za-z0-9]/.test(newPassword)
-) {
+                    if (newPassword.length < 6) {
+                        showFormError(
+                            "New password must be at least 6 characters."
+                        );
+                        return;
+                    }
 
-    showFormError(
-        "New password must contain 12+ characters, uppercase, lowercase, number and special character."
-    );
-
-    return;
-}
+                    if (newPassword.length > 128) {
+                        showFormError(
+                            "New password must be 128 characters or fewer."
+                        );
+                        return;
+                    }
                 }
 
 

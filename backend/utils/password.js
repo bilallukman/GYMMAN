@@ -124,34 +124,17 @@ function isLegacyPassword(stored) {
 
 
 function validatePassword(password) {
-
-    if (typeof password !== "string") {
+    if (typeof password !== "string" || password.length === 0) {
         return "Password is required.";
     }
-
-    if (password.length < 12) {
-        return "Password must be at least 12 characters.";
+    if (password.length < 6) {
+        return "Password must be at least 6 characters.";
     }
-
-    if (!/[A-Z]/.test(password)) {
-        return "Password must contain at least one uppercase letter.";
+    if (password.length > 128) {
+        return "Password must be 128 characters or fewer.";
     }
-
-    if (!/[a-z]/.test(password)) {
-        return "Password must contain at least one lowercase letter.";
-    }
-
-    if (!/[0-9]/.test(password)) {
-        return "Password must contain at least one number.";
-    }
-
-    if (!/[^A-Za-z0-9]/.test(password)) {
-        return "Password must contain at least one special character.";
-    }
-
     return null;
 }
-
 
 function createToken() {
 

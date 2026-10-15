@@ -19,3 +19,6 @@ Thumbs.db
 # Editor
 .vscode/
 backend.zip
+
+backend/database/gym.db
+frontend.zip

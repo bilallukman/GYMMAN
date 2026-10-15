@@ -4,6 +4,7 @@ const APP_URL = (
     process.env.APP_URL ||
     "http://localhost:5500"
 ).replace(/\/$/, "");
+console.log("GYMMAN APP_URL:", APP_URL);
 
 const RESEND_API_KEY =
     process.env.RESEND_API_KEY;
@@ -148,6 +149,7 @@ async function sendPasswordResetEmail(
     // Fragments are not sent as part of the HTTP request.
     const link =
         `${APP_URL}/pages/reset-password.html#token=${encodeURIComponent(token)}`;
+        console.log("GYMMAN APP_URL:", APP_URL);
 
 
     return sendEmail({

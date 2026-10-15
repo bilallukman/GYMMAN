@@ -11,13 +11,19 @@
 <a href="../index.html" class="back-link">← Back to GYMMAN</a>
 <main class="auth-layout">
 <section class="auth-brand"><a href="../index.html">GYMMAN</a><span>YOUR PERSONAL TRAINING SPACE</span><h1>Start building your training history.</h1><p>Create your account and use GYMMAN to log workouts, track health metrics and stay consistent.</p></section>
-<section class="auth-card"><span class="auth-eyebrow">GET STARTED</span><h2>Create your account</h2><p class="auth-muted">Use a strong password to keep your account protected.</p>
+<section class="auth-card"><span class="auth-eyebrow">GET STARTED</span><h2>Create your account</h2><p class="auth-muted">Choose a password with at least 6 characters.</p>
 <form id="registerForm" class="auth-form">
 <input type="text" id="username" placeholder="Username" required autocomplete="username">
 <input type="email" id="email" placeholder="Email address" required autocomplete="email">
-<input type="password" id="password" placeholder="Password" required autocomplete="new-password">
-<p id="passwordHint" class="password-hint">8+ chars • uppercase • lowercase • number • special character</p>
-<input type="password" id="confirmPassword" placeholder="Confirm password" required autocomplete="new-password">
+<div class="password-wrapper">
+<input type="password" id="password" placeholder="Password (6+ characters)" required minlength="6" autocomplete="new-password">
+<button type="button" class="password-toggle" data-password-toggle="password" aria-label="Show password" aria-pressed="false" title="Show password"><svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+</div>
+<p id="passwordHint" class="password-hint">At least 6 characters</p>
+<div class="password-wrapper">
+<input type="password" id="confirmPassword" placeholder="Confirm password" required minlength="6" autocomplete="new-password">
+<button type="button" class="password-toggle" data-password-toggle="confirmPassword" aria-label="Show confirm password" aria-pressed="false" title="Show password"><svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button>
+</div>
 <button type="submit">Create account</button>
 <p id="registerMessage" class="error"></p>
 </form>

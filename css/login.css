@@ -195,6 +195,57 @@ a {
         0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
+/* =========================================
+   PASSWORD VISIBILITY TOGGLE
+========================================= */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #8b95a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.password-toggle:hover {
+    background: transparent;
+    color: #2563eb;
+    transform: translateY(-50%);
+}
+
+.password-toggle:active {
+    transform: translateY(-50%);
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.eye-icon {
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.8;
+}
 
 /* =========================================
    BUTTON
@@ -783,3 +834,152 @@ a {
     }
 
 }
+
+/* =========================================
+   PASSWORD VISIBILITY TOGGLE
+========================================= */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute !important;
+    top: 50% !important;
+    right: 12px !important;
+    width: 32px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 6px !important;
+    background: transparent !important;
+    color: #8b95a5 !important;
+    box-shadow: none !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer;
+    font-family: Arial, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+}
+
+.password-toggle:hover {
+    background: transparent !important;
+    color: #2563eb !important;
+    transform: translateY(-50%) !important;
+}
+
+.password-toggle:active {
+    transform: translateY(-50%) !important;
+}
+
+.password-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* =========================================
+   PASSWORD VISIBILITY TOGGLE
+========================================= */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 50px;
+}
+
+.password-toggle {
+    position: absolute !important;
+    top: 50% !important;
+    right: 12px !important;
+
+    width: 32px !important;
+    height: 32px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+    background: transparent !important;
+    color: #8b95a5 !important;
+
+    box-shadow: none !important;
+    transform: translateY(-50%) !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    cursor: pointer !important;
+}
+
+.password-toggle:hover {
+    color: #2563eb !important;
+    background: transparent !important;
+    transform: translateY(-50%) !important;
+}
+
+.password-toggle:active {
+    transform: translateY(-50%) !important;
+}
+
+.password-toggle:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.password-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+
+/* Password toggle buttons must not inherit the full-width submit-button style. */
+.auth-form .password-toggle {
+    width: 30px;
+    height: 30px;
+    min-height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #8b95a5;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.auth-form .password-toggle:hover {
+    background: transparent;
+    color: #2563eb;
+    box-shadow: none;
+    transform: translateY(-50%);
+}
+
+.auth-form .password-toggle:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.auth-form .password-wrapper input {
+    padding-right: 52px;
+}
+
