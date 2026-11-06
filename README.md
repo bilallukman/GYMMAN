@@ -6,8 +6,8 @@ one place. It brings together workout management, an exercise library,
 fitness calculations, diet-related tools, and user-specific records in a
 single application.
 
-**Live website:** https://gymman.in\
-**Backend API:** https://gymman.onrender.com\
+**Live website:** https://gymman.in
+**Backend API:** https://gymman.onrender.com
 **Repository:** https://github.com/bilallukman/GYMMAN
 
 ## Table of contents
